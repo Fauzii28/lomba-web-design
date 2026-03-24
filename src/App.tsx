@@ -10,6 +10,7 @@ import AuthPage from './pages/AuthPage';
 import RegisterPage from './pages/RegisterPage';
 // Catatan: Di laptopmu pastikan filenya bernama Dashboard.tsx
 import Dashboard from './pages/Dashboard';
+import DeskripsiGejalaPage from './pages/DeskripsiGejalaPage'; // Sesuaikan folder Master
 
 
 // --- BARU: Import Halaman Hasil (ResultPage) ---
@@ -21,7 +22,7 @@ export default function App() {
       <Routes>
         {/* Jalur Utama: Tampilkan desain kerenmu! */}
         <Route path="/" element={<LandingPage />} />
-        
+        <Route path="/deskripsi-gejala" element={<DeskripsiGejalaPage />} />
         {/* Jalur Masuk/Login: Arahkan ke Halaman Auth buatan Bolt */}
         <Route path="/login" element={<AuthPage />} />
         
