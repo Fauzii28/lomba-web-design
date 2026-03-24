@@ -1,218 +1,267 @@
 import { useNavigate } from 'react-router-dom';
-// Kita pakai ikon dari lucide-react yang sudah diinstal tadi
-import { LayoutList, FileText, HeartPulse, UserSquare, BrainCircuit, Search } from 'lucide-react';
+import { 
+  HeartPulse, 
+  ArrowUpRight, 
+  ChevronDown, 
+  Activity, 
+  BriefcaseMedical, 
+  Trophy, 
+  Droplets,
+  Phone,
+  Plus
+} from 'lucide-react';
 
 export default function LandingPage() {
   const navigate = useNavigate();
 
-  // Fungsi sakti untuk tombol "Mulai" agar pindah ke halaman Login/Register buatan Bolt
   const navigateKeLogin = () => {
-    navigate('/login'); // Pastikan App.tsx sudah punya jalur '/login'
+    navigate('/login');
   };
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] text-slate-800 font-sans overflow-hidden">
+    // Background gradient persis seperti desain (biru es ke putih)
+    <div className="min-h-screen bg-gradient-to-br from-[#D9EAF5] via-[#E6F2F8] to-[#F8FAFC] text-slate-800 font-sans overflow-hidden relative">
       
-      {/* 1. HEADER / NAVBAR (Atas) */}
-      <nav className="p-6 flex justify-between items-center max-w-7xl mx-auto">
-        <div className="font-black text-3xl text-slate-900 flex items-center gap-2">
-          {/* Logo kita ganti dengan ikon sirkuit otak (simbol AI) */}
-          <BrainCircuit className="text-pink-500 w-8 h-8" />
-          HealthLogia.
+      {/* --- FLOATING STICKERS (Aksen miring di background) --- */}
+      <div className="absolute top-[40%] left-10 bg-[#8DA5BA]/20 backdrop-blur-sm text-[#4A647A] font-black text-xs px-6 py-2 rounded-full -rotate-12 tracking-widest pointer-events-none z-0 shadow-sm">WEBSITE</div>
+      <div className="absolute top-[55%] left-24 bg-[#8DA5BA]/20 backdrop-blur-sm text-[#4A647A] font-black text-xs px-6 py-2 rounded-full -rotate-12 tracking-widest pointer-events-none z-0 shadow-sm">UI/UX</div>
+      <div className="absolute top-[45%] right-10 bg-[#8DA5BA]/20 backdrop-blur-sm text-[#4A647A] font-black text-xs px-6 py-2 rounded-full rotate-12 tracking-widest pointer-events-none z-0 shadow-sm">MEDICAL</div>
+      <div className="absolute bottom-[20%] right-10 bg-[#8DA5BA]/20 backdrop-blur-sm text-[#4A647A] font-black text-xs px-6 py-2 rounded-full -rotate-6 tracking-widest pointer-events-none z-0 shadow-sm">HAMIDA JANNAT</div>
+
+      {/* 1. NAVBAR */}
+      <nav className="pt-6 pb-4 px-8 flex justify-between items-center max-w-[1400px] mx-auto relative z-50">
+        {/* Logo */}
+        <div className="flex items-center gap-2 font-black text-2xl text-[#1e3a8a]">
+          <div className="bg-[#1e3a8a] p-1 rounded-md">
+            <Plus className="text-[#4ade80] w-5 h-5" strokeWidth={4} />
+          </div>
+          HealthLogia
         </div>
-        <div className="hidden md:flex gap-8 font-medium text-slate-600">
-          <a href="#" className="hover:text-pink-500">Layanan Kesehatan</a>
-          <a href="#" className="hover:text-pink-500">Scan Gambar AI</a>
-          <a href="#" className="hover:text-pink-500">Konsultasi Gejala</a>
-          <a href="#" className="hover:text-pink-500">Tentang Kami</a>
+        
+        {/* Links */}
+        <div className="hidden lg:flex items-center gap-10 font-bold text-[13px] text-slate-500">
+          <a href="#" className="text-slate-800 border-b-2 border-slate-800 pb-1">Home</a>
+          <a href="#" className="hover:text-slate-800 transition-colors">About</a>
+          <a href="#" className="hover:text-slate-800 transition-colors flex items-center gap-1">Departments <ChevronDown className="w-4 h-4" /></a>
+          <a href="#" className="hover:text-slate-800 transition-colors">Doctors</a>
+          <a href="#" className="hover:text-slate-800 transition-colors">Career</a>
         </div>
-        <div className="flex gap-4">
-          <button onClick={navigateKeLogin} className="text-slate-700 font-semibold px-4 py-2 rounded-xl hover:bg-white transition-colors">Masuk</button>
-          <button onClick={navigateKeLogin} className="bg-pink-500 hover:bg-pink-600 text-white px-6 py-2 rounded-xl font-semibold shadow-md transition-all">Daftar</button>
-        </div>
+        
+        {/* CTA Button */}
+        <button onClick={navigateKeLogin} className="bg-white pl-6 pr-2 py-2 rounded-full font-bold text-sm flex items-center gap-4 shadow-sm hover:shadow-md transition-all text-slate-700">
+          Masuk 
+          <div className="bg-[#4ade80] p-2 rounded-full">
+             <ArrowUpRight className="w-4 h-4 text-white" />
+          </div>
+        </button>
       </nav>
 
-
-
-      
-      {/* 2. HERO SECTION (Tampilan Utama) */}
-      <section className="relative py-20 px-10 max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+      {/* 2. HERO SECTION */}
+      <section className="relative pt-12 pb-20 px-8 max-w-[1400px] mx-auto grid lg:grid-cols-12 gap-4 items-center min-h-[700px]">
         
-        {/* --- 1. EFEK LATAR BELAKANG AWAN BIRU (MESH GRADIENT) --- */}
-        <div className="absolute top-[-20%] left-[-10%] w-125 h-125 bg-blue-400/30 rounded-full blur-[120px] pointer-events-none"></div>
-        <div className="absolute bottom-[-10%] right-[-10%] w-125 h-125 bg-cyan-300/20 rounded-full blur-[120px] pointer-events-none "></div>
+        {/* KIRI: TEKS (Kolom 5/12) */}
+        <div className="col-span-5 flex flex-col gap-6 relative z-20">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 bg-white/40 backdrop-blur-md px-4 py-2 rounded-full border border-white/60 w-fit shadow-sm">
+            <Activity className="w-4 h-4 text-slate-700" />
+            <span className="text-[11px] font-black uppercase tracking-wider text-slate-700">Cek kesehatan lebih praktis</span>
+          </div>
+          
+          {/* Main Heading (Putih tebal) */}
+         <h1 className="text-[70px] lg:text-[50px] font-black text-white leading-[0.95] tracking-tight drop-shadow-md uppercase">
+  {/* Gunakan inline-flex agar ikon menempel pas setelah kata ANDA */}
+  <span className="inline-flex items-center gap-4">
+    PAHAMI GEJALA ANDA 
+  
+  </span>
 
-        {/* Kiri: Teks Stack */}
-        <div className="flex flex-col gap-8 relative z-10">
-          <h1 className="text-6xl font-black text-slate-900 leading-[1.1] tracking-tight">
-            Pahami gejala Anda dengan cara <span className="text-blue-600">yang baru dan unik</span>
-          </h1>
-          <p className="text-lg text-slate-600 max-w-lg">
-            Analisis gejala atau kondisi kulit Anda menggunakan AI canggih. Dapatkan skrining awal dan saran tindakan dalam hitungan detik.
+  <span className="block mt-2">
+    DENGAN CARA YANG
+  </span>
+
+  <span className="block text-[#1e3a8a]">
+    BARU DAN UNIK
+  </span>
+</h1>
+          
+          <p className="text-[#4A647A] text-sm max-w-sm leading-relaxed font-medium mt-2">
+            Analisis gejala atau kondisi kulit Anda menggunakan AI canggih.Dapatkan skrining awal dan saran tindakan dalam hitungan detik.
           </p>
-          <div className="flex gap-6 items-center">
-            {/* Tombol Utama */}
-            <button 
-              onClick={navigateKeLogin}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-5 rounded-2xl font-bold text-lg shadow-xl hover:shadow-2xl transition-all hover:-translate-y-1"
-            >
-              Mulai Cek Sekarang
-            </button>
-            {/* Tombol Tentang Kami (Efek Kaca) */}
-            <a href="#" className="flex items-center gap-3 text-blue-700 font-semibold hover:text-blue-800">
-              <div className="p-2.5 bg-white/60 backdrop-blur-sm rounded-full text-blue-600 border border-white/80 shadow-sm">
-                <HeartPulse className="w-5 h-5" />
-              </div>
-              Tentang Kami
-            </a>
-          </div>
-          {/* Pola lingkaran putus-putus disesuaikan warnanya */}
-          <div className="absolute -left-20 -top-20 -z-10 w-48 h-48 border-2 border-dashed border-blue-200/50 rounded-full"></div>
-        </div>
-
-        {/* Kanan: Foto Stack */}
-        {/* Kanan: Foto Stack */}
-        <div className="relative z-10 flex justify-center mt-10 md:mt-0">
+          <div className=' w-fit  flex items-center gap-6 '>
+            <button onClick={navigateKeLogin} className=" bg-[#1e3a8a] text-white rounded-full font-bold text-sm  mt-4 w-fit pl-8 pr-3 py-3 flex items-center gap-6 hover:bg-[#152c6b] transition-all shadow-xl hover:scale-105 transition-transform cursor-pointer">
+            Tentang kami
+            <div className="bg-white/20 p-2 rounded-full ">
+              <ArrowUpRight className="w-4 h-4 text-white" />
+            </div>
+          </button>
+            <div className="bg-white/20 p-2 rounded-full backdrop-blur-sm border border-white/30 shadow-sm">
+      <HeartPulse className="w-12 h-12 text-[#1e3a8a]" />
+    </div>
           
-          {/* KOTAK PENGUNCI (Wrapper) - Memaksa area ini jadi kotak sempurna agar isinya bulat */}
-          <div className="relative w-72 md:w-88 aspect-square">
-            
-            {/* Pola lingkaran putus-putus (Sekarang 100% bulat karena mengikuti Kotak Pengunci) */}
-            <div className="absolute inset-0 scale-[1.2] md:scale-[1.25] -z-10 border-2 border-dashed border-blue-200/50 rounded-full"></div>
-            
-            {/* Foto Utama */}
-            <div className="relative w-full h-full border-4 border-white/50 rounded-full p-2 bg-white/20 backdrop-blur-sm shadow-2xl">
-              <img 
-                src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=600&h=600&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                alt="Healthy user" 
-                className="rounded-full w-full h-full object-cover border-4 border-white"
-              />
-            </div>
-
-            {/* --- OVERLAYS CARD TRANPARAN --- */}
-            
-            {/* Card Kiri Atas */}
-            <div className="absolute -top-4 -left-8 md:-left-12 bg-white/60 backdrop-blur-md p-3 md:p-4 rounded-3xl shadow-xl border border-white/80 flex items-center gap-3 hover:scale-105 transition-transform cursor-pointer">
-              <div className="p-2 md:p-3 bg-white/90 rounded-2xl text-blue-600 shadow-sm"><BrainCircuit className="w-5 h-5 md:w-6 md:h-6"/></div>
-              <div>
-                <div className="font-bold text-lg md:text-2xl text-slate-800">Skrining AI</div>
-                <div className="text-xs md:text-sm text-slate-600">Analisis Gejala Dalam</div>
-              </div>
-            </div>
-            
-            {/* Card Kanan Bawah */}
-            <div className="absolute bottom-4 -right-4 md:-right-8 bg-white/60 backdrop-blur-md p-3 md:p-4 rounded-3xl shadow-xl border border-white/80 flex items-center gap-3 hover:scale-105 transition-transform cursor-pointer">
-              <div className="p-2 md:p-3 bg-white/90 rounded-2xl text-cyan-600 shadow-sm"><LayoutList className="w-5 h-5 md:w-6 md:h-6"/></div>
-              <div>
-                <div className="font-bold text-lg md:text-2xl text-slate-800">Scan Fisik</div>
-                <div className="text-xs md:text-sm text-slate-600">Analisis Kulit & Mata</div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* 3. PARTNER BAR (Ungu to Pink Gradient) */}
-      <section className="bg-linear-to-r from-green-600 to-blue-800 py-6 px-10 text-white flex justify-center items-center gap-12 font-medium opacity-90 shadow-inner">
-        <span className="text-lg font-black opacity-80">MediScan Platform Partners:</span>
-        <div className="flex gap-16 items-center">
-            {/* Kita pakai logo generic seperti di gambar */}
-            <span className="text-2xl font-bold opacity-60">Microsoft</span>
-            <span className="text-2xl font-bold opacity-60"> magic leap</span>
-            <span className="text-2xl font-bold opacity-60">Codecov</span>
-            <span className="text-2xl font-bold opacity-60">User Testing</span>
-            <span className="text-2xl font-bold opacity-60">duolingo</span>
-        </div>
-      </section>
-
-      {/* 4. SEARCH TOPICS SECTION (Sesuai Desain Etech) */}
-      <section className="py-20 px-6 max-w-7xl mx-auto flex flex-col items-center text-center gap-12">
-        <div className="max-w-xl">
-          <h2 className="text-5xl font-black mb-4">Cari Topik Kesehatan & Gejala</h2>
-          <p className="text-slate-500 text-lg">Jelajahi basis pengetahuan kami untuk informasi penyakit, tips hidup sehat, dan panduan pertolongan pertama.</p>
-        </div>
-        <div className="relative w-full max-w-2xl bg-white p-2.5 rounded-3xl shadow-lg border border-pink-100 flex items-center">
-          <Search className="absolute left-6 text-slate-400 w-6 h-6" />
-          <input 
-            type="text" 
-            placeholder="Cari topik kesehatan atau gejala, contoh: 'ruam kulit merah gatal'" 
-            className="w-full pl-16 pr-6 py-4 rounded-full border border-slate-100 focus:outline-none focus:border-pink-300 focus:ring-1 focus:ring-pink-200"
-          />
-          <button className="bg-pink-500 hover:bg-pink-600 text-white px-8 py-4 rounded-2xl font-semibold ml-4 shadow-md transition-all">Cari Topik</button>
-        </div>
-      </section>
-
-      {/* 5. BENEFITS SECTION (Metode Kita) */}
-      <section className="py-20 px-6 max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-        {/* Kiri: Grid Foto dengan dashed border */}
-        <div className="border-4 border-dashed border-pink-200 aspect-square p-12 rounded-[50px]">
-          <div className="grid grid-cols-2 gap-6 h-full w-full">
-            <div className="relative group overflow-hidden rounded-3xl">
-                <img src="https://images.unsplash.com/photo-1596524430615-b46475ddff6e?q=80&w=600&h=600&auto=format&fit=crop" alt="Dokter 1" className="w-full h-full object-cover group-hover:scale-110 transition-transform" />
-            </div>
-            <div className="relative group overflow-hidden rounded-3xl">
-                <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=600&h=600&auto=format&fit=crop" alt="Pasien" className="w-full h-full object-cover group-hover:scale-110 transition-transform" />
-            </div>
-            <div className="relative group overflow-hidden rounded-3xl">
-                <img src="https://images.unsplash.com/photo-1594824476967-48c877f12c45?q=80&w=600&h=600&auto=format&fit=crop" alt="Dokter 2" className="w-full h-full object-cover group-hover:scale-110 transition-transform" />
-            </div>
-            <div className="relative group overflow-hidden rounded-3xl">
-                <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=600&h=600&auto=format&fit=crop" alt="Analisis" className="w-full h-full object-cover group-hover:scale-110 transition-transform" />
-            </div>
           </div>
         </div>
 
-        {/* Kanan: Teks & List Manfaat */}
-        <div className="flex flex-col gap-10">
-          <div className="max-w-lg">
-            <h2 className="text-5xl font-black mb-4"><span className="text-pink-500">Keunggulan</span> Skrining MediScan AI</h2>
-            <p className="text-slate-500 text-lg">Proses skrining yang cepat, akurat, dan mudah digunakan untuk mendukung kesehatan Anda.</p>
-          </div>
+        {/* KANAN: KOMPOSISI GAMBAR COMPLEX (Kolom 7/12) */}
+        <div className="col-span-7 relative h-full w-full">
           
-          <div className="grid md:grid-cols-2 gap-6">
-            {/* List Item 1 */}
-            <div className="flex gap-4 items-center">
-              <div className="p-3 bg-pink-100 rounded-2xl text-pink-600 border border-pink-200"><BrainCircuit className="w-6 h-6"/></div>
+          {/* 1. Teks Profile Top Right */}
+          <div className="absolute -top-4 right-10 bg-white/80 backdrop-blur-md px-4 py-2 rounded-2xl shadow-xl border border-white flex items-center gap-3 z-30 hover:scale-105 transition-transform cursor-pointer">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150&auto=format&fit=crop" className="w-10 h-10 rounded-full object-cover" alt="Profile" />
+            <div>
+              <div className="font-bold text-[#1e3a8a] text-sm">@hamida_jannat</div>
+              <div className="text-[10px] text-slate-500 font-semibold">Landing Page UI Designer</div>
+            </div>
+          </div>
+
+          {/* 2. Dokter Center (Bentuk Kapsul/Arched) */}
+          <div className="absolute top-10 left-[15%] w-[320px] h-[460px] z-10">
+            <div className="w-full h-full bg-white/40 backdrop-blur-xl rounded-t-[200px] rounded-b-[40px] shadow-2xl border-4 border-white/60 overflow-hidden relative">
+              <img src="https://png.pngtree.com/png-vector/20260317/ourlarge/pngtree-healthy-blue-lungs-medical-illustration-png-image_18939243.webp" className="w-full h-full object-cover mt-8 scale-110" alt="Doctor" />
+            </div>
+            {/* Badge Bawah Dokter */}
+            <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur-md px-5 py-3 rounded-2xl shadow-xl border border-white flex items-center gap-3 w-[75%] hover:scale-105 transition-transform cursor-pointer">
+              <div className="bg-[#1e3a8a] p-2.5 rounded-xl text-white"><BriefcaseMedical className="w-5 h-5"/></div>
               <div>
-                <div className="font-bold text-lg text-slate-800">Cek Gejala AI</div>
-                <div className="text-sm text-slate-500">Skrining awal dalam hitungan menit</div>
+                <div className="font-black text-slate-800 text-sm">22 Years</div>
+                <div className="text-[9px] font-bold text-slate-500">Medical Excellence</div>
               </div>
             </div>
-            {/* List Item 2 */}
-            <div className="flex gap-4 items-center">
-              <div className="p-3 bg-blue-100 rounded-2xl text-blue-600 border border-blue-200"><LayoutList className="w-6 h-6"/></div>
+          </div>
+
+          {/* 3. Paru-Paru 3D Right */}
+          <div className="absolute top-10 right-0 w-[350px] h-[400px] z-0 flex items-center justify-center">
+            {/* Ganti src ini dengan gambar paru-paru transparan kamu nanti */}
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP1H2s1I08MedzxDGZbQPQGPgjlLESnhEf1g&s" className="w-full object-contain mix-blend-multiply opacity-80 rounded-full" alt="Lungs 3D" />
+            
+            {/* Badge Kanan Paru-Paru */}
+            <div className="absolute right-[-20px] top-1/2 bg-white/90 backdrop-blur-md px-4 py-2 rounded-2xl shadow-xl border border-white flex items-center gap-2 hover:scale-105 transition-transform cursor-pointer">
+              <Droplets className="w-4 h-4 text-slate-600" />
               <div>
-                <div className="font-bold text-lg text-slate-800">Scan Gambar Fisik</div>
-                <div className="text-sm text-slate-500">Analisis Kulit, Mata, Memar</div>
+                <div className="font-black text-slate-800 text-sm leading-none">6700</div>
+                <div className="text-[8px] font-bold text-slate-500 leading-none mt-1">Healed Lungs</div>
               </div>
             </div>
-            {/* List Item 3 */}
-            <div className="flex gap-4 items-center">
-              <div className="p-3 bg-purple-100 rounded-2xl text-purple-600 border border-purple-200"><UserSquare className="w-6 h-6"/></div>
-              <div>
-                <div className="font-bold text-lg text-slate-800">Rekomendasi Ahli</div>
-                <div className="text-sm text-slate-500">Temukan Dokter Terdekat</div>
-              </div>
-            </div>
-            {/* List Item 4 */}
-            <div className="flex gap-4 items-center">
-              <div className="p-3 bg-emerald-100 rounded-2xl text-emerald-600 border border-emerald-200"><FileText className="w-6 h-6"/></div>
-              <div>
-                <div className="font-bold text-lg text-slate-800">Laporan Kesehatan</div>
-                <div className="text-sm text-slate-500">Riwayat Skrining Personal</div>
-              </div>
-            </div>
+          </div>
+
+          {/* 4. Awards Badge Center Top */}
+          <div className="absolute top-16 right-[35%] bg-white/90 backdrop-blur-md p-3 rounded-2xl shadow-xl border border-white flex flex-col items-center z-20 hover:scale-105 transition-transform cursor-pointer">
+             <div className="text-xl font-black text-slate-800 leading-none">490</div>
+             <div className="text-[8px] text-slate-500 font-bold uppercase mt-1">Awards</div>
+             <Trophy className="w-6 h-6 text-slate-400 mt-2" />
+          </div>
+
+        </div>
+      </section>
+
+      {/* 3. THREE CARDS SECTION */}
+      <section className="relative z-30 px-8 max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 -mt-10">
+        {/* Card 1: Brain */}
+        <div className="bg-white/60 backdrop-blur-md p-6 rounded-[30px] border border-white shadow-lg relative group cursor-pointer hover:-translate-y-2 transition-transform">
+          <div className="absolute top-6 right-6 bg-[#4ade80] p-2 rounded-full">
+            <ArrowUpRight className="w-4 h-4 text-white" />
+          </div>
+          <div className="w-32 h-32 mx-auto mb-4 bg-blue-100 rounded-full flex items-center justify-center overflow-hidden">
+             <img src="src/img/bhc.png" alt="Brain" className="object-cover w-full h-full mix-blend-multiply" />
+          </div>
+          <h3 className="text-center font-black text-[#1e3a8a] text-lg w-2/3 mx-auto leading-tight">Brain Health Check</h3>
+        </div>
+
+        {/* Card 2: Liver */}
+        <div className="bg-white/60 backdrop-blur-md p-6 rounded-[30px] border border-white shadow-lg relative group cursor-pointer hover:-translate-y-2 transition-transform">
+          <div className="absolute top-6 right-6 bg-[#4ade80] p-2 rounded-full">
+            <ArrowUpRight className="w-4 h-4 text-white" />
+          </div>
+          <div className="w-32 h-32 mx-auto mb-4 bg-teal-100 rounded-full flex items-center justify-center overflow-hidden">
+             <img src="https://images.unsplash.com/photo-1530497610245-94d3c16cda28?q=80&w=400&auto=format&fit=crop" alt="Liver" className="object-cover w-full h-full mix-blend-multiply" />
+          </div>
+          <h3 className="text-center font-black text-[#1e3a8a] text-lg w-2/3 mx-auto leading-tight">Liver Function Test</h3>
+        </div>
+
+        {/* Card 3: Kidney (Dark Blue) */}
+        <div className="bg-[#1e3a8a] p-6 rounded-[30px] shadow-xl relative group cursor-pointer hover:-translate-y-2 transition-transform">
+          <div className="absolute top-6 right-6 bg-white p-2 rounded-full">
+            <ArrowUpRight className="w-4 h-4 text-[#1e3a8a]" />
+          </div>
+          <div className="w-32 h-32 mx-auto mb-4 bg-blue-800 rounded-full flex items-center justify-center overflow-hidden">
+             <img src="https://images.unsplash.com/photo-1530497610245-94d3c16cda28?q=80&w=400&auto=format&fit=crop" alt="Kidney" className="object-cover w-full h-full mix-blend-screen opacity-50" />
+          </div>
+          <h3 className="text-right font-black text-white text-lg w-2/3 ml-auto leading-tight absolute bottom-8 right-8">Kidney Health Scan</h3>
+        </div>
+      </section>
+
+      {/* 4. ABOUT SECTION */}
+      <section className="py-24 px-8 max-w-[1400px] mx-auto grid md:grid-cols-2 gap-20 items-center">
+        {/* Kiri: Hospital Image & Overlay */}
+        <div className="relative flex items-center">
+  {/* 1. Kontainer Gambar Utama - Dibuat w-[85%] agar ada ruang untuk kartu melayang di kanan */}
+  <div className="rounded-[40px] overflow-hidden shadow-2xl h-[400px] w-[85%] border-8 border-white bg-white">
+    <img 
+      src="src/img/logo_hl.png" 
+      alt="Hospital" 
+      className="w-full h-full object-cover" // Pakai object-contain agar logo burung hantunya tidak terpotong
+    />
+  </div>
+
+  {/* 2. Floating Card Nuvica - Digeser ke kanan (right-[-20px]) agar tidak menghalangi logo */}
+  <div className="absolute top-8 right-[-50px] bg-white/90 backdrop-blur-md p-6 rounded-[30px] shadow-2xl border border-white max-w-[200px] z-10">
+    <div className="flex items-center gap-2 mb-4">
+      <div className="bg-[#1e3a8a] text-white p-1 rounded font-bold text-[10px]">
+        <Plus className="w-3 h-3"/>
+      </div>
+      <span className="text-[12px] font-black tracking-widest text-slate-600 uppercase">HealthLogia</span>
+    </div>
+    <div className="text-[11px] font-black mb-2 text-slate-800 tracking-tight">
+      ESTABLISHED<br/>2024
+    </div>
+    <p className="text-[12px] font-semibold text-slate-500 leading-tight">
+      Committed to your health and well-being.
+    </p>
+  </div>
+</div>
+
+        {/* Kanan: About Text */}
+        <div className="flex flex-col gap-6 relative">
+           {/* Profile Badge Kiri Bawah Text */}
+           <div className="absolute -left-32 bottom-0 bg-white/80 backdrop-blur-md px-4 py-2 rounded-2xl shadow-xl border border-white flex items-center gap-3 z-30">
+          </div>
+
+          <div className="bg-[#4ade80] text-white text-[10px] font-black px-4 py-1.5 rounded-full w-fit uppercase tracking-widest shadow-sm">About Us</div>
+          <h2 className="text-[44px] font-black text-[#1e3a8a] leading-[1.1] tracking-tight">
+            YOUR NUVICA MEDICAL HOSPITAL
+          </h2>
+          <p className="text-slate-500 font-medium leading-relaxed max-w-md">
+            We Combine Clinical Expertise, Innovative Technology, And A Patient-First Approach To Ensure Accurate Diagnosis And Effective Treatment.
+          </p>
+          <div className="flex items-center gap-8 mt-2">
+             <button className="bg-[#1e3a8a] text-white pl-6 pr-3 py-2.5 rounded-full font-bold text-sm flex items-center gap-4 hover:bg-[#152c6b] transition-all shadow-md">
+               Learn More <div className="bg-white/20 p-1.5 rounded-full"><ArrowUpRight className="w-3 h-3" /></div>
+             </button>
+             <div className="flex items-center gap-3">
+               <div className="p-3 bg-white shadow-sm border border-slate-100 rounded-full"><Phone className="w-4 h-4 text-slate-400"/></div>
+               <div>
+                 <div className="text-[10px] text-slate-400 font-bold">For Any Questions</div>
+                 <div className="font-black text-slate-700 text-sm">+8801616876080</div>
+               </div>
+             </div>
           </div>
         </div>
       </section>
 
-      {/* FOOTER & LAINNYA BISA DITAMBAHKAN MANUAL DI SINI SEPERTI DI GAMBAR */}
-      {/* {Section Tentang Kami START} */}
-      <section>
-        
+      {/* 5. STATS SECTION (Bottom) */}
+      <section className="py-12 px-8 max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center relative z-10 border-t border-slate-300/30">
+        {[
+          { val: "$250M", label: "In Healthcare Funding" },
+          { val: "20M+", label: "Patients Served Globally" },
+          { val: "95%", label: "Patient Satisfaction Rate" },
+          { val: "200+", label: "Medical Professionals" }
+        ].map((stat, i) => (
+          <div key={i} className="flex flex-col gap-1">
+            <div className="text-[40px] font-black text-[#1e3a8a] leading-none">{stat.val}</div>
+            <div className="text-[10px] text-slate-500 font-bold leading-tight max-w-[120px] mx-auto">{stat.label}</div>
+          </div>
+        ))}
       </section>
-      {/* {Section Tentang Kami END} */}
+
     </div>
   );
 }
