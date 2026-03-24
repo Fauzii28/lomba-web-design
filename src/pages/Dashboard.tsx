@@ -58,37 +58,55 @@ export default function Dashboard() {
           
           <div 
             onClick={() => navigate('/upload-gejala')}
-            className="bg-white/40 backdrop-blur-2xl border border-white/60 rounded-[2.5rem] p-8 shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all cursor-pointer group relative overflow-hidden"
+            className="bg-white/60 backdrop-blur-md border border-white/80 rounded-3xl p-8 shadow-xl 
+                       hover:border-emerald-400 hover:shadow-emerald-100 hover:-translate-y-2 transition-all cursor-pointer group relative overflow-hidden"
           >
-            <div className="bg-emerald-500 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform">
+            {/* Animasi Cahaya Berjalan (Pakai % agar pasti kebaca) */}
+            <div 
+              style={{ background: 'linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.2), transparent)' }}
+              className="absolute inset-0 translate-x-full group-hover:-translate-x-full transition-transform duration-1000 ease-in-out"
+            ></div>
+
+            <div className="bg-emerald-500 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform relative z-10">
               <Camera className="w-8 h-8 text-white" />
             </div>
-            <h2 className="text-2xl font-bold text-slate-800 mb-3">Cek Gejala Luar</h2>
-            <p className="text-slate-600 mb-8 leading-relaxed h-16">
+            <h2 className="text-2xl font-bold text-slate-800 mb-3 relative z-10">Cek Gejala Luar</h2>
+            <p className="text-slate-600 mb-8 leading-relaxed h-16 relative z-10 font-medium text-sm">
               Upload foto area tubuh yang mengalami keluhan untuk analisis visual menggunakan AI.
             </p>
-            <div className="flex gap-3 flex-wrap">
-              <span className="px-4 py-1.5 bg-emerald-100/60 text-emerald-700 rounded-lg text-sm font-semibold border border-emerald-200/50">Ruam Kulit</span>
-              <span className="px-4 py-1.5 bg-emerald-100/60 text-emerald-700 rounded-lg text-sm font-semibold border border-emerald-200/50">Luka</span>
-              <span className="px-4 py-1.5 bg-emerald-100/60 text-emerald-700 rounded-lg text-sm font-semibold border border-emerald-200/50">Bengkak</span>
+            <div className="flex gap-2 flex-wrap relative z-10">
+              {['Ruam Kulit', 'Luka', 'Bengkak'].map((tag) => (
+                <span key={tag} className="px-3 py-1 bg-emerald-100/80 text-emerald-700 rounded-lg text-xs font-bold border border-emerald-200/50">
+                  {tag}
+                </span>
+              ))}
             </div>
           </div>
 
-          <div 
+         <div 
             onClick={() => navigate('/questionnairepage', { state: { tipeKuis: 'dalam' } })}
-            className="bg-white/40 backdrop-blur-2xl border border-white/60 rounded-[2.5rem] p-8 shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all cursor-pointer group relative overflow-hidden"
+            className="bg-white/60 backdrop-blur-md border border-white/80 rounded-3xl p-8 shadow-xl 
+                       hover:border-blue-400 hover:shadow-blue-100 hover:-translate-y-2 transition-all cursor-pointer group relative overflow-hidden"
           >
-            <div className="bg-blue-600 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform">
+            {/* Animasi Cahaya Berjalan */}
+            <div 
+              style={{ background: 'linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.2), transparent)' }}
+              className="absolute inset-0 translate-x-full group-hover:-translate-x-full transition-transform duration-1000 ease-in-out"
+            ></div>
+
+            <div className="bg-blue-600 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform relative z-10">
               <MessageSquare className="w-8 h-8 text-white" />
             </div>
-            <h2 className="text-2xl font-bold text-slate-800 mb-3">Konsultasi Gejala Dalam</h2>
-            <p className="text-slate-600 mb-8 leading-relaxed h-16">
+            <h2 className="text-2xl font-bold text-slate-800 mb-3 relative z-10">Konsultasi Gejala Dalam</h2>
+            <p className="text-slate-600 mb-8 leading-relaxed h-16 relative z-10 font-medium text-sm">
               Ceritakan keluhan internal Anda dan AI akan membantu menganalisis kondisi kesehatan.
             </p>
-            <div className="flex gap-3 flex-wrap">
-              <span className="px-4 py-1.5 bg-blue-100/60 text-blue-700 rounded-lg text-sm font-semibold border border-blue-200/50">Demam</span>
-              <span className="px-4 py-1.5 bg-blue-100/60 text-blue-700 rounded-lg text-sm font-semibold border border-blue-200/50">Sakit Kepala</span>
-              <span className="px-4 py-1.5 bg-blue-100/60 text-blue-700 rounded-lg text-sm font-semibold border border-blue-200/50">Mual</span>
+            <div className="flex gap-2 flex-wrap relative z-10">
+              {['Demam', 'Sakit Kepala', 'Mual'].map((tag) => (
+                <span key={tag} className="px-3 py-1 bg-blue-100/80 text-blue-700 rounded-lg text-xs font-bold border border-blue-200/50">
+                  {tag}
+                </span>
+              ))}
             </div>
           </div>
 
