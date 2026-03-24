@@ -84,7 +84,7 @@ export default function Dashboard() {
           </div>
 
          <div 
-            onClick={() => navigate('/questionnairepage', { state: { tipeKuis: 'dalam' } })}
+            onClick={() => navigate('/deskripsi-gejala')}
             className="bg-white/60 backdrop-blur-md border border-white/80 rounded-3xl p-8 shadow-xl 
                        hover:border-blue-400 hover:shadow-blue-100 hover:-translate-y-2 transition-all cursor-pointer group relative overflow-hidden"
           >
