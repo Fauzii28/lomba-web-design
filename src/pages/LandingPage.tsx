@@ -29,7 +29,7 @@ export default function LandingPage() {
       <div className="absolute bottom-[20%] right-10 bg-[#8DA5BA]/20 backdrop-blur-sm text-[#4A647A] font-black text-xs px-6 py-2 rounded-full -rotate-6 tracking-widest pointer-events-none z-0 shadow-sm">HAMIDA JANNAT</div>
 
       {/* 1. NAVBAR */}
-      <nav className="pt-6 pb-4 px-8 flex justify-between items-center max-w-[1400px] mx-auto relative z-50">
+      <nav className="pt-4 pb-4 px-8 flex justify-between items-center max-w-[1400px] mx-auto relative z-50">
         {/* Logo */}
         <div className="flex items-center gap-2 font-black text-2xl text-[#1e3a8a]">
           <div className="bg-[#1e3a8a] p-1 rounded-md">
@@ -39,25 +39,24 @@ export default function LandingPage() {
         </div>
         
         {/* Links */}
-        <div className="hidden lg:flex items-center gap-10 font-bold text-[13px] text-slate-500">
-          <a href="#" className="text-slate-800 border-b-2 border-slate-800 pb-1">Home</a>
-          <a href="#" className="hover:text-slate-800 transition-colors">About</a>
-          <a href="#" className="hover:text-slate-800 transition-colors flex items-center gap-1">Departments <ChevronDown className="w-4 h-4" /></a>
-          <a href="#" className="hover:text-slate-800 transition-colors">Doctors</a>
-          <a href="#" className="hover:text-slate-800 transition-colors">Career</a>
+        <div className="hidden lg:flex items-center gap-10 font-bold text-[15px] text-slate-500">
+          <a href="#" className="hover:text-slate-800 transition-colors">Beranda</a>
+          <a href="#carakerja" className="hover:text-slate-800 transition-colors">Cara Kerja</a>
+          <a href="#tentang" className="hover:text-slate-800 transition-colors">Tentang Kami</a>
+          <a href="#kontak" className="hover:text-slate-800 transition-colors">Kontak</a>
         </div>
         
         {/* CTA Button */}
-        <button onClick={navigateKeLogin} className="bg-white pl-6 pr-2 py-2 rounded-full font-bold text-sm flex items-center gap-4 shadow-sm hover:shadow-md transition-all text-slate-700">
+        <button onClick={navigateKeLogin} className="bg-white pl-6 pr-2 py-2 rounded-full font-bold text-md flex items-center gap-4 shadow-sm hover:shadow-md transition-all text-slate-700">
           Masuk 
-          <div className="bg-[#4ade80] p-2 rounded-full">
+          <div className="bg-[#4565bd] p-2 rounded-full">
              <ArrowUpRight className="w-4 h-4 text-white" />
           </div>
         </button>
       </nav>
 
       {/* 2. HERO SECTION */}
-      <section className="relative pt-12 pb-20 px-8 max-w-[1400px] mx-auto grid lg:grid-cols-12 gap-4 items-center min-h-[700px]">
+      <section className="relative pb-45 px-10 max-w-[1400px] mx-auto grid lg:grid-cols-12 gap-2 items-center min-h-[700px]">
         
         {/* KIRI: TEKS (Kolom 5/12) */}
         <div className="col-span-5 flex flex-col gap-6 relative z-20">
@@ -68,28 +67,31 @@ export default function LandingPage() {
           </div>
           
           {/* Main Heading (Putih tebal) */}
-         <h1 className="text-[70px] lg:text-[50px] font-black text-white leading-[0.95] tracking-tight drop-shadow-md uppercase">
+         <h1 className="text-[70px] lg:text-[45px] font-black text-white leading-[0.95] tracking-tight drop-shadow-md uppercase">
   {/* Gunakan inline-flex agar ikon menempel pas setelah kata ANDA */}
   <span className="inline-flex items-center gap-4">
-    PAHAMI GEJALA ANDA 
-  
+    SOLUSI CERDAS
   </span>
 
-  <span className="block mt-2">
+  <span className="inline-flex items-center gap-4">
+    PANTAU KESEHATAN
+  </span>
+
+  <span className="inline-flex items-center gap-4">
     DENGAN CARA YANG
   </span>
 
-  <span className="block text-[#1e3a8a]">
+  <span className="block text-[#1e3a8a] mt-2">
     BARU DAN UNIK
   </span>
 </h1>
           
-          <p className="text-[#4A647A] text-sm max-w-sm leading-relaxed font-medium mt-2">
-            Analisis gejala atau kondisi kulit Anda menggunakan AI canggih.Dapatkan skrining awal dan saran tindakan dalam hitungan detik.
+          <p className="text-[#4A647A] text-sm max-w-sm leading-relaxed font-medium">
+            Analisis gejala atau atau konsultasi keluhan menggunakan AI canggih. Dapatkan skrining awal dan saran tindakan dalam hitungan detik.
           </p>
           <div className=' w-fit  flex items-center gap-6 '>
-            <button onClick={navigateKeLogin} className=" bg-[#1e3a8a] text-white rounded-full font-bold text-sm  mt-4 w-fit pl-8 pr-3 py-3 flex items-center gap-6 hover:bg-[#152c6b] transition-all shadow-xl hover:scale-105 transition-transform cursor-pointer">
-            Tentang kami
+            <button onClick={navigateKeLogin} className=" bg-[#1e3a8a] text-white rounded-full font-bold text-md  mt-4 w-fit pl-8 pr-3 py-3 flex items-center gap-6 hover:bg-[#152c6b] transition-all shadow-xl hover:scale-105 transition-transform cursor-pointer">
+            Cek Sekarang
             <div className="bg-white/20 p-2 rounded-full ">
               <ArrowUpRight className="w-4 h-4 text-white" />
             </div>
@@ -104,27 +106,10 @@ export default function LandingPage() {
         {/* KANAN: KOMPOSISI GAMBAR COMPLEX (Kolom 7/12) */}
         <div className="col-span-7 relative h-full w-full">
           
-          {/* 1. Teks Profile Top Right */}
-          <div className="absolute -top-4 right-10 bg-white/80 backdrop-blur-md px-4 py-2 rounded-2xl shadow-xl border border-white flex items-center gap-3 z-30 hover:scale-105 transition-transform cursor-pointer">
-            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150&auto=format&fit=crop" className="w-10 h-10 rounded-full object-cover" alt="Profile" />
-            <div>
-              <div className="font-bold text-[#1e3a8a] text-sm">@hamida_jannat</div>
-              <div className="text-[10px] text-slate-500 font-semibold">Landing Page UI Designer</div>
-            </div>
-          </div>
-
           {/* 2. Dokter Center (Bentuk Kapsul/Arched) */}
-          <div className="absolute top-10 left-[15%] w-[320px] h-[460px] z-10">
+          <div className="absolute top-6 left-[15%] w-[320px] h-[460px] z-10">
             <div className="w-full h-full bg-white/40 backdrop-blur-xl rounded-t-[200px] rounded-b-[40px] shadow-2xl border-4 border-white/60 overflow-hidden relative">
               <img src="https://png.pngtree.com/png-vector/20260317/ourlarge/pngtree-healthy-blue-lungs-medical-illustration-png-image_18939243.webp" className="w-full h-full object-cover mt-8 scale-110" alt="Doctor" />
-            </div>
-            {/* Badge Bawah Dokter */}
-            <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur-md px-5 py-3 rounded-2xl shadow-xl border border-white flex items-center gap-3 w-[75%] hover:scale-105 transition-transform cursor-pointer">
-              <div className="bg-[#1e3a8a] p-2.5 rounded-xl text-white"><BriefcaseMedical className="w-5 h-5"/></div>
-              <div>
-                <div className="font-black text-slate-800 text-sm">22 Years</div>
-                <div className="text-[9px] font-bold text-slate-500">Medical Excellence</div>
-              </div>
             </div>
           </div>
 
@@ -132,67 +117,54 @@ export default function LandingPage() {
           <div className="absolute top-10 right-0 w-[350px] h-[400px] z-0 flex items-center justify-center">
             {/* Ganti src ini dengan gambar paru-paru transparan kamu nanti */}
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP1H2s1I08MedzxDGZbQPQGPgjlLESnhEf1g&s" className="w-full object-contain mix-blend-multiply opacity-80 rounded-full" alt="Lungs 3D" />
-            
-            {/* Badge Kanan Paru-Paru */}
-            <div className="absolute right-[-20px] top-1/2 bg-white/90 backdrop-blur-md px-4 py-2 rounded-2xl shadow-xl border border-white flex items-center gap-2 hover:scale-105 transition-transform cursor-pointer">
-              <Droplets className="w-4 h-4 text-slate-600" />
-              <div>
-                <div className="font-black text-slate-800 text-sm leading-none">6700</div>
-                <div className="text-[8px] font-bold text-slate-500 leading-none mt-1">Healed Lungs</div>
-              </div>
-            </div>
-          </div>
-
-          {/* 4. Awards Badge Center Top */}
-          <div className="absolute top-16 right-[35%] bg-white/90 backdrop-blur-md p-3 rounded-2xl shadow-xl border border-white flex flex-col items-center z-20 hover:scale-105 transition-transform cursor-pointer">
-             <div className="text-xl font-black text-slate-800 leading-none">490</div>
-             <div className="text-[8px] text-slate-500 font-bold uppercase mt-1">Awards</div>
-             <Trophy className="w-6 h-6 text-slate-400 mt-2" />
           </div>
 
         </div>
       </section>
 
-      {/* 3. THREE CARDS SECTION */}
-      <section className="relative z-30 px-8 max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 -mt-10">
-        {/* Card 1: Brain */}
+      {/* 3. CARA KERJA - CARD */}
+      <section id='carakerja' className="relative z-30 px-12 max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 -mt-10">
+        {/* Card 1: Microscope */}
         <div className="bg-white/60 backdrop-blur-md p-6 rounded-[30px] border border-white shadow-lg relative group cursor-pointer hover:-translate-y-2 transition-transform">
-          <div className="absolute top-6 right-6 bg-[#4ade80] p-2 rounded-full">
+          <div className="absolute top-6 right-6 bg-[#78b1fb] p-2 rounded-full">
             <ArrowUpRight className="w-4 h-4 text-white" />
           </div>
           <div className="w-32 h-32 mx-auto mb-4 bg-blue-100 rounded-full flex items-center justify-center overflow-hidden">
-             <img src="src/img/bhc.png" alt="Brain" className="object-cover w-full h-full mix-blend-multiply" />
+             <img src="https://plus.unsplash.com/premium_photo-1661432571518-975c430f529e?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Microscope" className="object-cover w-full h-full mix-blend-multiply" />
           </div>
-          <h3 className="text-center font-black text-[#1e3a8a] text-lg w-2/3 mx-auto leading-tight">Brain Health Check</h3>
+          <h3 className="font-black text-[#1e3a8a] text-xl leading-tight">Ambil Foto</h3>
+          <p className="text-sm text-slate-500 mt-3 leading-relaxed">Scan kondisi fisik atau gejala luar menggunakan fitur Computer Vision kami.</p>
         </div>
 
-        {/* Card 2: Liver */}
+        {/* Card 2: Stethoscope */}
         <div className="bg-white/60 backdrop-blur-md p-6 rounded-[30px] border border-white shadow-lg relative group cursor-pointer hover:-translate-y-2 transition-transform">
-          <div className="absolute top-6 right-6 bg-[#4ade80] p-2 rounded-full">
+          <div className="absolute top-6 right-6 bg-[#78b1fb] p-2 rounded-full">
             <ArrowUpRight className="w-4 h-4 text-white" />
           </div>
           <div className="w-32 h-32 mx-auto mb-4 bg-teal-100 rounded-full flex items-center justify-center overflow-hidden">
-             <img src="https://images.unsplash.com/photo-1530497610245-94d3c16cda28?q=80&w=400&auto=format&fit=crop" alt="Liver" className="object-cover w-full h-full mix-blend-multiply" />
+             <img src="https://plus.unsplash.com/premium_photo-1726837223703-a7b3e0752141?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Stethoscope" className="object-cover w-full h-full mix-blend-multiply" />
           </div>
-          <h3 className="text-center font-black text-[#1e3a8a] text-lg w-2/3 mx-auto leading-tight">Liver Function Test</h3>
+          <h3 className="font-black text-[#1e3a8a] text-xl leading-tight">Input Keluhan</h3>
+          <p className="text-sm text-slate-500 mt-3 leading-relaxed">Tuliskan apa yang Anda rasakan untuk dianalisis oleh algoritma kesehatan kami.</p>
         </div>
 
-        {/* Card 3: Kidney (Dark Blue) */}
+        {/* Card 3: Result */}
         <div className="bg-[#1e3a8a] p-6 rounded-[30px] shadow-xl relative group cursor-pointer hover:-translate-y-2 transition-transform">
           <div className="absolute top-6 right-6 bg-white p-2 rounded-full">
             <ArrowUpRight className="w-4 h-4 text-[#1e3a8a]" />
           </div>
           <div className="w-32 h-32 mx-auto mb-4 bg-blue-800 rounded-full flex items-center justify-center overflow-hidden">
-             <img src="https://images.unsplash.com/photo-1530497610245-94d3c16cda28?q=80&w=400&auto=format&fit=crop" alt="Kidney" className="object-cover w-full h-full mix-blend-screen opacity-50" />
+             <img src="https://images.unsplash.com/photo-1619691249147-c5689d88016b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZGlhZ25vc2lzfGVufDB8fDB8fHww" alt="Result" className="object-cover w-full h-full mix-blend-screen opacity-50" />
           </div>
-          <h3 className="text-right font-black text-white text-lg w-2/3 ml-auto leading-tight absolute bottom-8 right-8">Kidney Health Scan</h3>
+          <h3 className="font-black text-white text-xl leading-tight">Hasil & Validasi</h3>
+          <p className="text-sm text-blue-100 mt-3 leading-relaxed">Dapatkan diagnosis awal dan lakukan kuesioner tambahan untuk akurasi tinggi.</p>
         </div>
       </section>
 
       {/* 4. ABOUT SECTION */}
-      <section className="py-24 px-8 max-w-[1400px] mx-auto grid md:grid-cols-2 gap-20 items-center">
+      <section id='tentang' className="py-20 px-8 max-w-[1400px] mx-auto grid md:grid-cols-2 gap-20 items-center">
         {/* Kiri: Hospital Image & Overlay */}
-        <div className="relative flex items-center">
+        <div className="relative flex items-center px-4">
   {/* 1. Kontainer Gambar Utama - Dibuat w-[85%] agar ada ruang untuk kartu melayang di kanan */}
   <div className="rounded-[40px] overflow-hidden shadow-2xl h-[400px] w-[85%] border-8 border-white bg-white">
     <img 
@@ -220,47 +192,94 @@ export default function LandingPage() {
 </div>
 
         {/* Kanan: About Text */}
-        <div className="flex flex-col gap-6 relative">
+        <div className="flex flex-col gap-6 relative px-4">
            {/* Profile Badge Kiri Bawah Text */}
-           <div className="absolute -left-32 bottom-0 bg-white/80 backdrop-blur-md px-4 py-2 rounded-2xl shadow-xl border border-white flex items-center gap-3 z-30">
+           <div className="absolute -left-32 bottom-0 bg-white/80 backdrop-blur-md px-2 py-2 rounded-2xl shadow-xl border border-white flex items-center gap-4 z-30">
           </div>
 
-          <div className="bg-[#4ade80] text-white text-[10px] font-black px-4 py-1.5 rounded-full w-fit uppercase tracking-widest shadow-sm">About Us</div>
+          <div className="bg-[#4ade80] text-white text-[10px] font-black px-4 py-1.5 rounded-full w-fit uppercase tracking-widest shadow-sm">Inovasi Kesehatan</div>
           <h2 className="text-[44px] font-black text-[#1e3a8a] leading-[1.1] tracking-tight">
-            YOUR NUVICA MEDICAL HOSPITAL
+            ASISTEN MEDIS ANDA
           </h2>
           <p className="text-slate-500 font-medium leading-relaxed max-w-md">
-            We Combine Clinical Expertise, Innovative Technology, And A Patient-First Approach To Ensure Accurate Diagnosis And Effective Treatment.
+            HealthLogia adalah manifestasi teknologi dalam membantu masyarakat memahami kondisi kesehatan lebih awal. Dengan AI, kami mempermudah akses informasi medis secara cepat dan terjangkau.
           </p>
           <div className="flex items-center gap-8 mt-2">
-             <button className="bg-[#1e3a8a] text-white pl-6 pr-3 py-2.5 rounded-full font-bold text-sm flex items-center gap-4 hover:bg-[#152c6b] transition-all shadow-md">
-               Learn More <div className="bg-white/20 p-1.5 rounded-full"><ArrowUpRight className="w-3 h-3" /></div>
-             </button>
              <div className="flex items-center gap-3">
                <div className="p-3 bg-white shadow-sm border border-slate-100 rounded-full"><Phone className="w-4 h-4 text-slate-400"/></div>
                <div>
                  <div className="text-[10px] text-slate-400 font-bold">For Any Questions</div>
-                 <div className="font-black text-slate-700 text-sm">+8801616876080</div>
+                 <div className="font-black text-slate-700 text-sm">+62 812-3456-7890</div>
                </div>
              </div>
           </div>
         </div>
       </section>
 
-      {/* 5. STATS SECTION (Bottom) */}
-      <section className="py-12 px-8 max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center relative z-10 border-t border-slate-300/30">
-        {[
-          { val: "$250M", label: "In Healthcare Funding" },
-          { val: "20M+", label: "Patients Served Globally" },
-          { val: "95%", label: "Patient Satisfaction Rate" },
-          { val: "200+", label: "Medical Professionals" }
-        ].map((stat, i) => (
-          <div key={i} className="flex flex-col gap-1">
-            <div className="text-[40px] font-black text-[#1e3a8a] leading-none">{stat.val}</div>
-            <div className="text-[10px] text-slate-500 font-bold leading-tight max-w-[120px] mx-auto">{stat.label}</div>
+      {/* 5. FOOTER & CONTACT SECTION */}
+      <footer id='kontak' className="bg-[#1e3a8a] text-white pt-20 pb-10 px-8 rounded-t-[50px]">
+        <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 border-b border-white/10 pb-16">
+          
+          {/* Brand Col */}
+          <div className="flex flex-col gap-6">
+            <div className="flex items-center gap-2 font-black text-2xl">
+              <div className="bg-white p-1 rounded-md">
+                <Plus className="text-[#1e3a8a] w-5 h-5" strokeWidth={4} />
+              </div>
+              HealthLogia
+            </div>
+            <p className="text-blue-100/60 text-sm leading-relaxed font-medium">
+              Transformasi digital kesehatan untuk masyarakat yang lebih peduli pada deteksi dini.
+            </p>
+            <div className="flex items-center gap-4">
+              <a href="#" className="p-2 bg-white/10 rounded-full hover:bg-[#4ade80] transition-all"></a>
+              <a href="#" className="p-2 bg-white/10 rounded-full hover:bg-[#4ade80] transition-all"></a>
+              <a href="#" className="p-2 bg-white/10 rounded-full hover:bg-[#4ade80] transition-all"></a>
+            </div>
           </div>
-        ))}
-      </section>
+
+          {/* Quick Links */}
+          <div className="flex flex-col gap-6">
+            <h4 className="font-black text-lg uppercase tracking-wider">Navigasi</h4>
+            <div className="flex flex-col gap-3 text-blue-100/70 text-sm font-semibold">
+              <a href="#" className="hover:text-[#4ade80] transition-colors">Beranda</a>
+              <a href="#cara-kerja" className="hover:text-[#4ade80] transition-colors">Cara Kerja AI</a>
+              <a href="#about" className="hover:text-[#4ade80] transition-colors">Tentang Kami</a>
+              <a href="#kontak" className="hover:text-[#4ade80] transition-colors">Kontak Tim</a>
+            </div>
+          </div>
+
+          {/* Contact Details */}
+          <div className="flex flex-col gap-6">
+            <h4 className="font-black text-lg uppercase tracking-wider">Kontak Kami</h4>
+            <div className="flex flex-col gap-4 text-blue-100/70 text-sm">
+              <div className="flex items-center gap-3">
+                <span>support@healthlogia.unma.ac.id</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Phone className="w-5 h-5 text-[#4ade80]" />
+                <span>+62 812-3456-7890</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Newsletter/Small Action */}
+          <div className="flex flex-col gap-6">
+            <h4 className="font-black text-lg uppercase tracking-wider">Dukung Inovasi</h4>
+            <p className="text-blue-100/60 text-xs leading-relaxed font-medium">
+              Bantu kami menyempurnakan AI ini dengan memberikan masukan atau bergabung sebagai mitra medis.
+            </p>
+            <button className="bg-[#4ade80] text-[#1e3a8a] py-3 rounded-full font-black text-xs uppercase tracking-widest hover:brightness-110 transition-all shadow-lg shadow-black/20">
+              Kirim Feedback
+            </button>
+          </div>
+        </div>
+
+        {/* Copyright */}
+        <div className="max-w-[1400px] mx-auto pt-8 flex flex-col md:flex-row justify-between items-center text-blue-100/40 text-[10px] font-black uppercase tracking-[0.2em]">
+          <div>© 2024 HealthLogia Team. All Rights Reserved.</div>
+        </div>
+      </footer>
 
     </div>
   );
