@@ -8,7 +8,10 @@ import {
   Trophy, 
   Droplets,
   Phone,
-  Plus
+  Plus,
+  Mail,
+  Menu, 
+  X
 } from 'lucide-react';
 
 export default function LandingPage() {
@@ -19,17 +22,17 @@ export default function LandingPage() {
   };
 
   return (
-    // Background gradient persis seperti desain (biru es ke putih)
-    <div className="min-h-screen bg-gradient-to-br from-[#D9EAF5] via-[#E6F2F8] to-[#F8FAFC] text-slate-800 font-sans overflow-hidden relative">
+    // Background gradient (biru es ke putih)
+    <div className="min-h-screen bg-linear-to-br from-[#D9EAF5] via-[#E6F2F8] to-[#F8FAFC] text-slate-800 font-sans overflow-hidden relative">
       
       {/* --- FLOATING STICKERS (Aksen miring di background) --- */}
-      <div className="absolute top-[40%] left-10 bg-[#8DA5BA]/20 backdrop-blur-sm text-[#4A647A] font-black text-xs px-6 py-2 rounded-full -rotate-12 tracking-widest pointer-events-none z-0 shadow-sm">WEBSITE</div>
-      <div className="absolute top-[55%] left-24 bg-[#8DA5BA]/20 backdrop-blur-sm text-[#4A647A] font-black text-xs px-6 py-2 rounded-full -rotate-12 tracking-widest pointer-events-none z-0 shadow-sm">UI/UX</div>
       <div className="absolute top-[45%] right-10 bg-[#8DA5BA]/20 backdrop-blur-sm text-[#4A647A] font-black text-xs px-6 py-2 rounded-full rotate-12 tracking-widest pointer-events-none z-0 shadow-sm">MEDICAL</div>
-      <div className="absolute bottom-[20%] right-10 bg-[#8DA5BA]/20 backdrop-blur-sm text-[#4A647A] font-black text-xs px-6 py-2 rounded-full -rotate-6 tracking-widest pointer-events-none z-0 shadow-sm">HAMIDA JANNAT</div>
 
       {/* 1. NAVBAR */}
-      <nav className="pt-4 pb-4 px-8 flex justify-between items-center max-w-[1400px] mx-auto relative z-50">
+      <nav className="fixed top-0 left-0 right-0 z-100 transition-all duration-300 px-8 ${
+        isScrolled ? 'bg-white/80 backdrop-blur-lg shadow-md' : 'bg-transparent'
+      }">
+        <div className="max-w-350 mx-auto pt-4 pb-4 px-8 flex justify-between items-center">
         {/* Logo */}
         <div className="flex items-center gap-2 font-black text-2xl text-[#1e3a8a]">
           <div className="bg-[#1e3a8a] p-1 rounded-md">
@@ -47,18 +50,19 @@ export default function LandingPage() {
         </div>
         
         {/* CTA Button */}
-        <button onClick={navigateKeLogin} className="bg-white pl-6 pr-2 py-2 rounded-full font-bold text-md flex items-center gap-4 shadow-sm hover:shadow-md transition-all text-slate-700">
+        <button onClick={navigateKeLogin} className="bg-white pl-6 pr-2 py-2 rounded-full font-bold text-md flex items-center gap-4 shadow-sm hover:shadow-md hover:scale-105 transition-all text-slate-700 cursor-pointer">
           Masuk 
-          <div className="bg-[#4565bd] p-2 rounded-full">
+          <div className="bg-[#4ade80] p-2 rounded-full">
              <ArrowUpRight className="w-4 h-4 text-white" />
           </div>
         </button>
+        </div>
       </nav>
 
       {/* 2. HERO SECTION */}
-      <section className="relative pb-45 px-10 max-w-[1400px] mx-auto grid lg:grid-cols-12 gap-2 items-center min-h-[700px]">
+      <section className="relative pt-20 pb-45 px-10 max-w-350 mx-auto grid lg:grid-cols-12 gap-2 items-center min-h-175">
         
-        {/* KIRI: TEKS (Kolom 5/12) */}
+        {/* KIRI: TEKS */}
         <div className="col-span-5 flex flex-col gap-6 relative z-20">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 bg-white/40 backdrop-blur-md px-4 py-2 rounded-full border border-white/60 w-fit shadow-sm">
@@ -66,9 +70,8 @@ export default function LandingPage() {
             <span className="text-[11px] font-black uppercase tracking-wider text-slate-700">Cek kesehatan lebih praktis</span>
           </div>
           
-          {/* Main Heading (Putih tebal) */}
+          {/* Main Heading*/}
          <h1 className="text-[70px] lg:text-[45px] font-black text-white leading-[0.95] tracking-tight drop-shadow-md uppercase">
-  {/* Gunakan inline-flex agar ikon menempel pas setelah kata ANDA */}
   <span className="inline-flex items-center gap-4">
     SOLUSI CERDAS
   </span>
@@ -103,30 +106,29 @@ export default function LandingPage() {
           </div>
         </div>
 
-        {/* KANAN: KOMPOSISI GAMBAR COMPLEX (Kolom 7/12) */}
+        {/* KANAN: GAMBAR*/}
         <div className="col-span-7 relative h-full w-full">
           
-          {/* 2. Dokter Center (Bentuk Kapsul/Arched) */}
-          <div className="absolute top-6 left-[15%] w-[320px] h-[460px] z-10">
+          {/* 2. Medis*/}
+          <div className="absolute top-6 left-[15%] w-[320px] h-115 z-10">
             <div className="w-full h-full bg-white/40 backdrop-blur-xl rounded-t-[200px] rounded-b-[40px] shadow-2xl border-4 border-white/60 overflow-hidden relative">
-              <img src="https://png.pngtree.com/png-vector/20260317/ourlarge/pngtree-healthy-blue-lungs-medical-illustration-png-image_18939243.webp" className="w-full h-full object-cover mt-8 scale-110" alt="Doctor" />
+              <img src="src/img/paru.jpg" className="w-full h-full object-cover mt-5 scale-110" alt="Doctor" />
             </div>
           </div>
 
-          {/* 3. Paru-Paru 3D Right */}
-          <div className="absolute top-10 right-0 w-[350px] h-[400px] z-0 flex items-center justify-center">
-            {/* Ganti src ini dengan gambar paru-paru transparan kamu nanti */}
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP1H2s1I08MedzxDGZbQPQGPgjlLESnhEf1g&s" className="w-full object-contain mix-blend-multiply opacity-80 rounded-full" alt="Lungs 3D" />
+          {/* 3. Paru-Paru 3D*/}
+          <div className="absolute top-10 right-0 w-87.5 h-[400px] z-0 flex items-center justify-center">
+            <img src="src/img/doctor.jpg" className="w-full object-contain mix-blend-multiply opacity-80 rounded-full" alt="Lungs 3D" />
           </div>
 
         </div>
       </section>
 
       {/* 3. CARA KERJA - CARD */}
-      <section id='carakerja' className="relative z-30 px-12 max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 -mt-10">
+      <section id='carakerja' className="relative pt-30 z-30 px-12 max-w-350 mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 -mt-30">
         {/* Card 1: Microscope */}
         <div className="bg-white/60 backdrop-blur-md p-6 rounded-[30px] border border-white shadow-lg relative group cursor-pointer hover:-translate-y-2 transition-transform">
-          <div className="absolute top-6 right-6 bg-[#78b1fb] p-2 rounded-full">
+          <div className="absolute top-6 right-6 bg-[#4565bd] p-2 rounded-full">
             <ArrowUpRight className="w-4 h-4 text-white" />
           </div>
           <div className="w-32 h-32 mx-auto mb-4 bg-blue-100 rounded-full flex items-center justify-center overflow-hidden">
@@ -138,7 +140,7 @@ export default function LandingPage() {
 
         {/* Card 2: Stethoscope */}
         <div className="bg-white/60 backdrop-blur-md p-6 rounded-[30px] border border-white shadow-lg relative group cursor-pointer hover:-translate-y-2 transition-transform">
-          <div className="absolute top-6 right-6 bg-[#78b1fb] p-2 rounded-full">
+          <div className="absolute top-6 right-6 bg-[#4565bd] p-2 rounded-full">
             <ArrowUpRight className="w-4 h-4 text-white" />
           </div>
           <div className="w-32 h-32 mx-auto mb-4 bg-teal-100 rounded-full flex items-center justify-center overflow-hidden">
@@ -149,7 +151,7 @@ export default function LandingPage() {
         </div>
 
         {/* Card 3: Result */}
-        <div className="bg-[#1e3a8a] p-6 rounded-[30px] shadow-xl relative group cursor-pointer hover:-translate-y-2 transition-transform">
+        <div className="bg-[#3757b0] p-6 rounded-[30px] shadow-xl relative group cursor-pointer hover:-translate-y-2 transition-transform">
           <div className="absolute top-6 right-6 bg-white p-2 rounded-full">
             <ArrowUpRight className="w-4 h-4 text-[#1e3a8a]" />
           </div>
@@ -162,20 +164,20 @@ export default function LandingPage() {
       </section>
 
       {/* 4. ABOUT SECTION */}
-      <section id='tentang' className="py-20 px-8 max-w-[1400px] mx-auto grid md:grid-cols-2 gap-20 items-center">
+      <section id='tentang' className="py-20 px-8 pt-30 max-w-350 mx-auto grid md:grid-cols-2 gap-20 items-center">
         {/* Kiri: Hospital Image & Overlay */}
         <div className="relative flex items-center px-4">
-  {/* 1. Kontainer Gambar Utama - Dibuat w-[85%] agar ada ruang untuk kartu melayang di kanan */}
+  {/* 1. Kontainer Gambar Utama */}
   <div className="rounded-[40px] overflow-hidden shadow-2xl h-[400px] w-[85%] border-8 border-white bg-white">
     <img 
-      src="src/img/logo_hl.png" 
+      src="src/img/logo.jpg" 
       alt="Hospital" 
-      className="w-full h-full object-cover" // Pakai object-contain agar logo burung hantunya tidak terpotong
+      className="w-full h-full object-cover" 
     />
   </div>
 
-  {/* 2. Floating Card Nuvica - Digeser ke kanan (right-[-20px]) agar tidak menghalangi logo */}
-  <div className="absolute top-8 right-[-50px] bg-white/90 backdrop-blur-md p-6 rounded-[30px] shadow-2xl border border-white max-w-[200px] z-10">
+  {/* 2. Floating Card  */}
+  <div className="absolute top-8 right-[-50px] bg-white/90 backdrop-blur-md p-5 rounded-[30px] shadow-2xl border border-white max-w-[200px] z-10">
     <div className="flex items-center gap-2 mb-4">
       <div className="bg-[#1e3a8a] text-white p-1 rounded font-bold text-[10px]">
         <Plus className="w-3 h-3"/>
@@ -183,19 +185,16 @@ export default function LandingPage() {
       <span className="text-[12px] font-black tracking-widest text-slate-600 uppercase">HealthLogia</span>
     </div>
     <div className="text-[11px] font-black mb-2 text-slate-800 tracking-tight">
-      ESTABLISHED<br/>2024
+      DIDIRIKAN<br/>2026
     </div>
     <p className="text-[12px] font-semibold text-slate-500 leading-tight">
-      Committed to your health and well-being.
+      Berkomitmen pada kesehatan dan kesejahteraan Anda.
     </p>
   </div>
 </div>
 
         {/* Kanan: About Text */}
         <div className="flex flex-col gap-6 relative px-4">
-           {/* Profile Badge Kiri Bawah Text */}
-           <div className="absolute -left-32 bottom-0 bg-white/80 backdrop-blur-md px-2 py-2 rounded-2xl shadow-xl border border-white flex items-center gap-4 z-30">
-          </div>
 
           <div className="bg-[#4ade80] text-white text-[10px] font-black px-4 py-1.5 rounded-full w-fit uppercase tracking-widest shadow-sm">Inovasi Kesehatan</div>
           <h2 className="text-[44px] font-black text-[#1e3a8a] leading-[1.1] tracking-tight">
@@ -217,10 +216,10 @@ export default function LandingPage() {
       </section>
 
       {/* 5. FOOTER & CONTACT SECTION */}
-      <footer id='kontak' className="bg-[#1e3a8a] text-white pt-20 pb-10 px-8 rounded-t-[50px]">
-        <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 border-b border-white/10 pb-16">
+      <footer id='kontak' className="bg-[#1e3a8a] text-white pt-15 pb-10 px-10 rounded-t-[50px]">
+        <div className="max-w-350 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 border-b border-white/10 pb-16">
           
-          {/* Brand Col */}
+          {/* Brand Kolom */}
           <div className="flex flex-col gap-6">
             <div className="flex items-center gap-2 font-black text-2xl">
               <div className="bg-white p-1 rounded-md">
@@ -254,6 +253,7 @@ export default function LandingPage() {
             <h4 className="font-black text-lg uppercase tracking-wider">Kontak Kami</h4>
             <div className="flex flex-col gap-4 text-blue-100/70 text-sm">
               <div className="flex items-center gap-3">
+                <Mail className="w-5 h-5 text-[#4ade80]" />
                 <span>support@healthlogia.unma.ac.id</span>
               </div>
               <div className="flex items-center gap-3">
@@ -263,7 +263,7 @@ export default function LandingPage() {
             </div>
           </div>
 
-          {/* Newsletter/Small Action */}
+          {/* Feedback */}
           <div className="flex flex-col gap-6">
             <h4 className="font-black text-lg uppercase tracking-wider">Dukung Inovasi</h4>
             <p className="text-blue-100/60 text-xs leading-relaxed font-medium">
@@ -276,8 +276,8 @@ export default function LandingPage() {
         </div>
 
         {/* Copyright */}
-        <div className="max-w-[1400px] mx-auto pt-8 flex flex-col md:flex-row justify-between items-center text-blue-100/40 text-[10px] font-black uppercase tracking-[0.2em]">
-          <div>© 2024 HealthLogia Team. All Rights Reserved.</div>
+        <div className="max-w-350 mx-auto pt-8 flex flex-col md:flex-row justify-between items-center text-blue-100/40 text-[10px] font-black uppercase tracking-[0.2em]">
+          <div>© 2024 Ngawangkong Team. All Rights Reserved.</div>
         </div>
       </footer>
 
