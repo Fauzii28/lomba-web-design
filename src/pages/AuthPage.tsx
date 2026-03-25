@@ -31,27 +31,10 @@ export default function AuthPage() {
           className="absolute -bottom-40 -right-40 bg-sky-700/30 blur-3xl pointer-events-none z-0"
         ></div>
 
-        {/* --- TOMBOL KEMBALI KE LANDING PAGE --- */}
-        <button 
-          onClick={() => navigate('/')} // Arahkan ke root atau halaman awal
-          className="absolute top-13 left-8 flex items-center gap-2 text-slate-400 hover:text-blue-100 font-bold transition-all group cursor-pointer z-20"
-        >
-          {/* Ikon Panah Kecil */}
-          <div className="w-8 h-8 rounded-full border border-slate-200 flex items-center justify-center hover:border-blue-200 hover:bg-blue-50 transition-all">
-            <svg className="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" />
-            </svg>
-          </div>
-          <span className="text-lg tracking-wide">Kembali ke Beranda</span>
-        </button>
-
-
         {/* Branding */}
         <div className="relative z-10 flex items-center gap-3">
           <div className="w-10 h-10 bg-white/20 rounded-2xl flex items-center justify-center border border-white/20 backdrop-blur-md">
             <svg className="w-5 h-5 text-[#4ade80]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <div className="w-10 h-10 ml-100 bg-white/20 rounded-2xl flex items-center justify-center border border-white/20 backdrop-blur-md">
-            <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
             </svg>
           </div>
@@ -97,10 +80,6 @@ export default function AuthPage() {
       </div>
 
       {/* SISI KANAN: FORM LOGIN */}
-      {/* ==========================================================
-          --- SISI KANAN: FORM LOGIN (KACA TEBAL) ---
-          ========================================================== */}
-      
       <div className="flex-1 bg-white/60 backdrop-blur-xl border-l border-white/20 flex flex-col items-center justify-center p-12 relative">
         
         {/* Bulatan halus di kanan agar Card Kaca makin cantik */}
