@@ -10,16 +10,19 @@ import AuthPage from './pages/AuthPage';
 import RegisterPage from './pages/RegisterPage';
 // Catatan: Di laptopmu pastikan filenya bernama Dashboard.tsx
 import Dashboard from './pages/Dashboard';
-import DeskripsiGejalaPage from './pages/DeskripsiGejalaPage';
+import DeskripsiGejalaPage from './pages/GejalaDalam';
+
 
 
 // --- BARU: Import Halaman Hasil (ResultPage) ---
 import ResultPage from './pages/ResultPage';
 
+
 export default function App() {
   return (
     <Router>
       <Routes>
+        
         {/* Jalur Utama: Tampilkan desain kerenmu! */}
         <Route path="/" element={<LandingPage />} />
         
@@ -31,7 +34,7 @@ export default function App() {
         <Route path="/deskripsi-gejala" element={<DeskripsiGejalaPage />} />
         {/* Jalur Kuis */}
         <Route path="/questionnairepage" element={<QuestionnairePage />} />
-
+       
         <Route path="/registerpage" element={<RegisterPage />} />
         {/* --- BARU: Jalur Halaman Hasil --- */}
         <Route path="/upload-gejala" element={<UploadGejalaLuar />} />
