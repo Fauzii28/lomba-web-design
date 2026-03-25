@@ -1,17 +1,60 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, MessageSquare, Lightbulb } from 'lucide-react';
+// Pastikan file supabase.ts ada di folder src/lib ya, King!
+import { supabase } from '../lib/supabase';
 
 export default function DeskripsiGejalaPage() {
   const navigate = useNavigate();
   const [deskripsi, setDeskripsi] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleNext = () => {
-    navigate('/questionnairepage', { state: { tipeKuis: 'dalam', deskripsiAwal: deskripsi } });
+  // --- FUNGSI BARU: SIMPAN KE SUPABASE LALU PINDAH HALAMAN ---
+  const handleNext = async () => {
+    if (!deskripsi.trim() || isLoading) return;
+
+    setIsLoading(true);
+    try {
+      console.log("Sedang mengirim data ke Supabase...");
+
+      // 1. Perintah Simpan ke Tabel Bahasa Indonesia Master
+      const { data, error } = await supabase
+        .from('konsultasi_kesehatan')
+        .insert([
+          { 
+            jenis_periksa: 'teks', 
+            deskripsi_gejala: deskripsi 
+          }
+        ])
+        .select()
+        .single();
+
+      if (error) {
+        console.error("Error Supabase:", error.message);
+        alert("Gagal simpan ke database: " + error.message);
+        return;
+      }
+
+      console.log("Data Berhasil Masuk!", data);
+
+      // 2. Kalau berhasil, pindah ke kuis sambil bawa ID Konsultasi-nya
+      navigate('/questionnairepage', { 
+        state: { 
+          idKonsultasi: data.id, 
+          deskripsiAwal: deskripsi,
+          tipeKuis: 'dalam' 
+        } 
+      });
+
+    } catch (err) {
+      console.error("Terjadi kesalahan:", err);
+      alert("Terjadi kesalahan sistem, coba cek koneksi internet King!");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
-    // h-screen mengunci tinggi, overflow-hidden mematikan scroll
     <div className="h-screen w-full bg-slate-100 overflow-hidden relative font-sans flex items-center justify-center p-6">
       
       {/* --- EFEK LATAR BELAKANG --- */}
@@ -53,12 +96,12 @@ export default function DeskripsiGejalaPage() {
                 Jelaskan Gejala Anda
               </label>
               
-              {/* KOTAK DESKRIPSI DIKECILKAN (h-28) */}
               <textarea 
                 value={deskripsi}
                 onChange={(e) => setDeskripsi(e.target.value)}
+                disabled={isLoading}
                 placeholder="Contoh: Mengalami demam sejak 2 hari yang lalu, suhu mencapai 38°C, disertai sakit kepala..."
-                className="w-full h-28 px-6 py-4 rounded-3xl bg-white/60 border border-white/80 focus:outline-none focus:border-blue-400 focus:ring-4 focus:ring-blue-400/10 transition-all text-slate-800 shadow-inner resize-none text-base leading-relaxed"
+                className="w-full h-28 px-6 py-4 rounded-3xl bg-white/60 border border-white/80 focus:outline-none focus:border-blue-400 focus:ring-4 focus:ring-blue-400/10 transition-all text-slate-800 shadow-inner resize-none text-base leading-relaxed disabled:opacity-50"
               ></textarea>
               
               <p className="text-[10px] text-slate-400 mt-2 ml-2 font-medium">
@@ -66,10 +109,10 @@ export default function DeskripsiGejalaPage() {
               </p>
             </div>
 
-            {/* TOMBOL LANJUT (LINEAR GRADIENT & NO []) */}
+            {/* TOMBOL LANJUT */}
             <button 
               onClick={handleNext}
-              disabled={!deskripsi.trim()}
+              disabled={!deskripsi.trim() || isLoading}
               style={{
                 background: deskripsi.trim() 
                   ? 'linear-gradient(90deg, rgba(16, 185, 129, 0.8), rgba(20, 184, 166, 0.8))' 
@@ -79,77 +122,49 @@ export default function DeskripsiGejalaPage() {
                 border: '1px solid rgba(255, 255, 255, 0.3)',
               }}
               className={`w-full py-4 rounded-2xl flex items-center justify-center font-black text-lg transition-all relative overflow-hidden group
-                ${deskripsi.trim() ? 'cursor-pointer active:scale-95 shadow-xl shadow-emerald-500/10' : 'cursor-not-allowed opacity-50'}`}
+                ${deskripsi.trim() && !isLoading ? 'cursor-pointer active:scale-95 shadow-xl shadow-emerald-500/10' : 'cursor-not-allowed opacity-50'}`}
             >
-              <div className="absolute inset-0 translate-x-full group-hover:-translate-x-full transition-transform duration-700 bg-linear-to-r from-transparent via-white/20 to-transparent"></div>
+              <div 
+                style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)' }}
+                className="absolute inset-0 translate-x-full group-hover:-translate-x-full transition-transform duration-700"></div>
               
-              <span className="relative z-10 text-white">Lanjutkan ke Pertanyaan</span>
+              <span className="relative z-10 text-white">
+                {isLoading ? 'Menyimpan...' : 'Lanjutkan ke Pertanyaan'}
+              </span>
             </button>
           </div>
         </div>
 
-        {/* --- TIPS CARD (TETAP ADA) --- */}
-        {/* --- TIPS CARD (IPHONE LIQUID GLASS - PASTI MUNCUL & ANTI []) --- */}
+        {/* --- TIPS CARD (IPHONE LIQUID GLASS) --- */}
         <div 
           style={{
-            // 1. Dasar Kaca Transparan (Biru Sangat Tipis)
             background: 'rgba(219, 234, 254, 0.3)', 
-            // 2. Backdrop Blur Tebal (Efek Kaca iPhone)
             backdropFilter: 'blur(20px) saturate(180%)',
             WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-            // 3. Border Putih Tipis
             border: '1px solid rgba(255, 255, 255, 0.2)',
           }}
           className="mt-4 rounded-3xl p-5 flex gap-5 items-center shadow-xl relative overflow-hidden group transition-all duration-300"
         >
-          
-          {/* --- EFEK CAIRAN BERGERAK (LIQUID GLOW ANIMATION) --- */}
-          {/* Lapisan 1: Gradasi Biru Cair yang Mengalir di Balik Teks */}
+          {/* Efek Cairan Bergerak */}
           <div 
-            style={{
-              background: 'linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.25), rgba(79, 70, 229, 0.15), transparent)', 
-            }}
-            // Animate-pulse agar intensitas cahayanya naik turun
-            className="absolute inset-0 w-full h-full -translate-x-[150%] skew-x-12 
-                       animate-pulse pointer-events-none -z-10 group-hover:duration-700"
-          ></div>
-          
-          {/* Lapisan 2: Overlay Glossy iPhone yang Mengalir (Cepat) */}
-          <div 
-            style={{
-              background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.03), transparent)',
-            }}
-            // Animasi 'Wuss' saat Hover (Durasi 700ms)
-            className="absolute inset-0 w-full h-full -translate-x-[150%] skew-x-12 
-                       group-hover:translate-x-[150%] transition-transform duration-700 ease-in-out"></div>
-          
-          {/* Lapisan 3: Glow Flow yang Mengalir Terus Menurun (Lambat) */}
-          <div 
-            style={{
-              background: 'linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent)', 
-            }}
-            // Animate-spin agar ada efek warna berputar lambat di pojok
-            className="absolute inset-0 w-full h-full animate-spin-slow pointer-events-none -z-10 opacity-70"
+            style={{ background: 'linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.25), rgba(79, 70, 229, 0.15), transparent)' }}
+            className="absolute inset-0 w-full h-full -translate-x-[150%] skew-x-12 animate-pulse pointer-events-none -z-10"
           ></div>
 
-
-          {/* --- KONTEN CARD (Z-10 AGAR DI ATAS CAIRAN) --- */}
           <div className="bg-blue-100 p-3 rounded-xl text-blue-600 shadow-inner relative z-10 border border-blue-200/50">
             <Lightbulb className="w-5 h-5" />
           </div>
           <div className="text-[11px] leading-snug relative z-10 space-y-1">
             <h3 className="font-bold text-slate-900 uppercase tracking-tighter mr-1 flex items-center gap-1.5">
-              {/* Titik kecil biru berkedip */}
               <span className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse"></span>
-              Tips Foto yang Baik
+              Tips Deskripsi yang Baik
             </h3>
             <ul className="text-slate-700 font-medium list-disc ml-4 space-y-1">
-              <li>Pastikan area yang difoto terlihat jelas dengan pencahayaan yang baik</li>
-              <li>Ambil foto dari jarak yang cukup dekat untuk detail yang jelas</li>
-              <li>Hindari foto yang blur atau terlalu gelap</li>
+              <li>Sebutkan kapan gejala pertama kali muncul</li>
+              <li>Jelaskan lokasi spesifik rasa sakitnya</li>
+              <li>Ceritakan aktivitas apa yang membuat gejala lebih parah</li>
             </ul>
           </div>
-
         </div>
 
       </div>
