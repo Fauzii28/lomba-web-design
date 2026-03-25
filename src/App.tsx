@@ -1,15 +1,17 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import UploadGejalaLuar from './pages/UploadGejalaLuar';
-// Import Halaman Landing Page desain manualmu
+// Import Halaman Landing Page
 import LandingPage from './pages/LandingPage';
 import QuestionnairePage from './pages/QuestionnairePage';
-// Import Halaman fungsional buatan Bolt (AuthPage.tsx)
-// Catatan: Di laptopmu pastikan filenya bernama AuthPage.tsx
+// Import Halaman AuthPage
 import AuthPage from './pages/AuthPage';
-// Import Halaman Dashboard buatan Bolt (Dashboard.tsx)
+// Import Halaman Dashboard
 import RegisterPage from './pages/RegisterPage';
-// Catatan: Di laptopmu pastikan filenya bernama Dashboard.tsx
+
 import Dashboard from './pages/Dashboard';
+import ProfilePage from './pages/ProfilePage';
+import UpdateDataPage from './pages/UpdateData';
+import SecurityPage from './pages/SecurityPage';
 import DeskripsiGejalaPage from './pages/GejalaDalam';
 
 
@@ -31,6 +33,9 @@ export default function App() {
         
         {/* Jalur Dashboard: Jika user sudah login, arahkan ke halaman Bolt */}
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/update-profile" element={<UpdateDataPage />} />
+        <Route path="/security" element={<SecurityPage />} />
         <Route path="/deskripsi-gejala" element={<DeskripsiGejalaPage />} />
         {/* Jalur Kuis */}
         <Route path="/questionnairepage" element={<QuestionnairePage />} />

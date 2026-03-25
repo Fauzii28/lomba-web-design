@@ -1,4 +1,4 @@
-import { Camera, MessageSquare, AlertTriangle } from 'lucide-react';
+import { Camera, MessageSquare, AlertTriangle, User, History, LogOut, Plus } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 export default function Dashboard() {
@@ -8,8 +8,39 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-slate-100 overflow-hidden relative font-sans p-6 md:p-12 flex items-center justify-center">
       
-      {/* --- EFEK AWAN HALUS (SUDAH MUNCUL & DIHALUSKAN) --- */}
-      {/* 1. Awan Biru - Kanan Tengah */}
+      {/* --- 1. NAVBAR DASHBOARD (Sesuai Wireframe) --- */}
+      <nav className="fixed top-0 left-0 right-0 bg-white/20 backdrop-blur-lg shadow-md border-b border-white/20 z-100 px-6 py-3">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          {/* Logo & Brand */}
+          <div className="flex items-center px-4 gap-2 font-black text-2xl text-[#1e3a8a]">
+            <div className="bg-[#1e3a8a] p-1 rounded-md">
+              <svg className="w-5 h-5 text-[#4ade80]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+            </div>
+            HealthLogia
+          </div>
+
+          {/* Menu Kanan */}
+          <div className="flex items-center gap-6 px-4">
+            <div onClick={() => navigate('/profile')} className="flex items-center gap-3 bg-white/50 px-3 py-1.5 rounded-full border border-slate-200 shadow-sm cursor-pointer hover:bg-white transition-all">
+              <div className="w-7 h-7 bg-[#1e3a8a] rounded-full flex items-center justify-center">
+                <User className="w-4 h-4 text-white" />
+              </div>
+              <span className="text-sm font-black text-slate-700 hidden sm:block">{userName}</span>
+            </div>
+            <button 
+              onClick={() => navigate('/')} 
+              className="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-full transition-all"
+              title="Logout"
+            >
+              <LogOut className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Awan Biru - Kanan Tengah */}
       <div 
         style={{ 
           width: '800px', 
@@ -25,7 +56,7 @@ export default function Dashboard() {
         className="animate-pulse"
       ></div>
 
-      {/* 2. Awan Hijau - Kiri Bawah */}
+      {/* Awan Hijau - Kiri Bawah */}
       <div 
         style={{ 
           width: '900px', 
@@ -40,8 +71,8 @@ export default function Dashboard() {
         }}
       ></div>
 
-      {/* --- KONTEN UTAMA --- */}
-      <div className="max-w-5xl w-full relative z-10">
+      {/* KONTEN UTAMA */}
+      <div className="max-w-6xl w-full relative z-10 pt-15">
         
         {/* HEADER */}
         <div className="mb-12">
@@ -134,13 +165,6 @@ export default function Dashboard() {
               HealthCheck AI adalah alat skrining awal dan bukan pengganti diagnosa medis profesional. Selalu konsultasikan hasil dengan dokter untuk mendapatkan perawatan yang tepat.
             </p>
           </div>
-        </div>
-
-        {/* TOMBOL KELUAR */}
-        <div className="mt-12 text-center">
-          <button onClick={() => navigate('/')} className="text-slate-400 hover:text-red-500 font-semibold transition-colors">
-            Keluar Akun
-          </button>
         </div>
 
       </div>
