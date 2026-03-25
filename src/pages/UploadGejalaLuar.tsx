@@ -9,7 +9,7 @@ export default function UploadGejalaLuar() {
   const handleLanjut = () => {
     // Membawa 'surat pengantar' tipe kuis luar, 
     // plus data tambahan (deskripsi & foto jika nanti sudah berfungsi) ke halaman kuis
-    navigate('/questionnairepage', { 
+    navigate('#', { 
       state: { tipeKuis: 'luar', deskripsiAwal: deskripsi } 
     });
   };

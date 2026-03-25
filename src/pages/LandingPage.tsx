@@ -22,8 +22,8 @@ export default function LandingPage() {
   };
 
   return (
-    // Background gradient (biru es ke putih)
-    <div className="min-h-screen bg-linear-to-br from-[#D9EAF5] via-[#E6F2F8] to-[#F8FAFC] text-slate-800 font-sans overflow-hidden relative">
+    // Background gradient persis seperti desain (biru es ke putih)
+    <div className="min-h-screen bg-gradient-to-br from-[#D9EAF5] via-[#E6F2F8] to-[#F8FAFC] text-slate-800 font-sans overflow-hidden relative">
       
       {/* --- FLOATING STICKERS (Aksen miring di background) --- */}
       <div className="absolute top-[45%] right-10 bg-[#8DA5BA]/20 backdrop-blur-sm text-[#4A647A] font-black text-xs px-6 py-2 rounded-full rotate-12 tracking-widest pointer-events-none z-0 shadow-sm">MEDICAL</div>
