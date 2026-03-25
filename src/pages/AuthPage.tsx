@@ -17,23 +17,18 @@ export default function AuthPage() {
   };
 
   return (
-    // h-screen mengunci tinggi tepat 100% layar, overflow-hidden mematikan scroll
     <div className="h-screen w-full bg-slate-100 overflow-hidden relative font-sans flex items-stretch">
       
-      {/* ==========================================================
-          --- SISI KIRI: BRANDING & EFEK LIQUID ---
-          ========================================================== */}
-      {/* flex-1.2 agar sisi kiri sedikit lebih lebar dari kanan */}
-      <div className="relative flex-[1.2] bg-linear-to-br from-blue-700 to-indigo-900 overflow-hidden flex flex-col justify-between p-12">
+      <div className="relative flex-[1.2] bg-linear-to-br from-[#2e66a2] to-[#254292] overflow-hidden flex flex-col justify-between p-12">
         
         {/* --- EFEK AWAN RAKSASA --- */}
         <div 
           style={{ width: '600px', height: '600px', borderRadius: '50%' }}
-          className="absolute -top-32 -left-32 bg-sky-400/40 blur-3xl pointer-events-none z-0 animate-pulse"
+          className="absolute -top-32 -left-32 bg-[#3d60c1]/40 blur-3xl pointer-events-none z-0 animate-pulse"
         ></div>
         <div 
           style={{ width: '500px', height: '500px', borderRadius: '50%' }}
-          className="absolute -bottom-40 -right-40 bg-purple-500/30 blur-3xl pointer-events-none z-0"
+          className="absolute -bottom-40 -right-40 bg-sky-700/30 blur-3xl pointer-events-none z-0"
         ></div>
 
         {/* --- TOMBOL KEMBALI KE LANDING PAGE --- */}
@@ -53,6 +48,8 @@ export default function AuthPage() {
 
         {/* Branding */}
         <div className="relative z-10 flex items-center gap-3">
+          <div className="w-10 h-10 bg-white/20 rounded-2xl flex items-center justify-center border border-white/20 backdrop-blur-md">
+            <svg className="w-5 h-5 text-[#4ade80]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <div className="w-10 h-10 ml-100 bg-white/20 rounded-2xl flex items-center justify-center border border-white/20 backdrop-blur-md">
             <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -84,7 +81,7 @@ export default function AuthPage() {
 
             <div className="bg-white/10 p-6 rounded-3xl border border-white/10 hover:bg-white/15 transition-colors">
 
-              <p className="text-5xl font-extrabold text-white">95%</p>
+              <p className="text-5xl font-extrabold text-white">92%</p>
 
               <p className="text-white/70 mt-1 font-medium">Tingkat Akurasi AI</p>
 
@@ -99,6 +96,7 @@ export default function AuthPage() {
         </p>
       </div>
 
+      {/* SISI KANAN: FORM LOGIN */}
       {/* ==========================================================
           --- SISI KANAN: FORM LOGIN (KACA TEBAL) ---
           ========================================================== */}
@@ -127,7 +125,7 @@ export default function AuthPage() {
                 disabled={isLoading} 
                 placeholder="nama@email.com" 
                 required 
-                className="w-full px-5 py-4 rounded-2xl bg-white/70 border border-slate-200/80 focus:outline-none focus:border-blue-400 focus:ring-4 focus:ring-blue-400/10 transition-all text-slate-900 shadow-inner"
+                className="w-full px-5 py-4 rounded-2xl bg-white/70 border border-slate-200/80 focus:outline-none focus:border-[#7295f4] focus:ring-4 focus:ring-[#2648a6]/10 transition-all text-slate-900 shadow-inner"
               />
             </div>
 
@@ -138,11 +136,11 @@ export default function AuthPage() {
                 disabled={isLoading} 
                 placeholder="••••••••" 
                 required 
-                className="w-full px-5 py-4 rounded-2xl bg-white/70 border border-slate-200/80 focus:outline-none focus:border-blue-400 focus:ring-4 focus:ring-blue-400/10 transition-all text-slate-800 shadow-inner"
+                className="w-full px-5 py-4 rounded-2xl bg-white/70 border border-slate-200/80 focus:outline-none focus:border-[#7295f4] focus:ring-4 focus:ring-[#2648a6]/10 transition-all text-slate-800 shadow-inner"
               />
             </div>
             
-            {/* --- TOMBOL LOGIN (TETAP LIQUID GLASS) --- */}
+            {/* TOMBOL LOGIN */}
             <button 
               type="submit" 
               disabled={isLoading} 
@@ -154,7 +152,7 @@ export default function AuthPage() {
               }}
               className="w-full relative py-4 rounded-2xl mt-4 flex items-center justify-center overflow-hidden group shadow-lg shadow-blue-500/10 transition-all active:scale-95 cursor-pointer disabled:opacity-70 disabled:cursor-wait"
             >
-              <div className="absolute inset-0 bg-linear-to-r from-blue-600/60 to-indigo-600/60 transition-opacity group-hover:opacity-90"></div>
+              <div className="absolute inset-0 bg-linear-to-r from-[#7295f4]/60 to-[#2648a6]/60 transition-opacity group-hover:opacity-90"></div>
               
               <div className="absolute inset-0 translate-x-full group-hover:translate-x-0 transition-transform duration-700 bg-linear-to-r from-transparent via-white/20 to-transparent"></div>
 
@@ -172,7 +170,7 @@ export default function AuthPage() {
           </form>
 
           <p className="text-center mt-8 text-sm text-slate-500 font-medium">
-            Belum punya akun? <span onClick={() => navigate('/registerpage')} className="text-blue-600 font-extrabold cursor-pointer hover:underline underline-offset-4">Daftar di sini</span>
+            Belum punya akun? <span onClick={() => navigate('/registerpage')} className="text-[#264db8] font-extrabold cursor-pointer hover:underline underline-offset-4">Daftar di sini</span>
           </p>
         </div>
 

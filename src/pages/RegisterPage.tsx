@@ -9,12 +9,10 @@ export default function RegisterPage() {
     e.preventDefault();
     setIsLoading(true);
 
-    // Simulasi mendaftarkan akun ke database selama 2 detik
     setTimeout(() => {
-      // 1. (Opsional) Tampilkan notifikasi sukses di sini jika ada
       
-      // 2. Arahkan kembali ke Login, bukan Dashboard
-      navigate('/login'); // Sesuaikan dengan path login kamu, misal '/auth' atau '/login'
+      // Arahkan kembali ke Login
+      navigate('/login'); 
       
       setIsLoading(false);
       alert("Pendaftaran Berhasil! Silakan login dengan akun baru Anda.");
@@ -24,17 +22,16 @@ export default function RegisterPage() {
   return (
     <div className="min-h-screen bg-slate-100 overflow-hidden relative font-sans flex items-center justify-center p-6">
       
-      {/* --- EFEK LATAR BELAKANG (HIJAU EMERALD UNTUK REGISTER) --- */}
       <div 
         style={{ width: '700px', height: '700px' }}
-        className="fixed -top-[10%] -left-[10%] bg-emerald-500/25 rounded-full blur-[120px] pointer-events-none -z-10 animate-pulse"
+        className="fixed -top-[10%] -left-[10%] bg-sky-500/25 rounded-full blur-[120px] pointer-events-none -z-10 animate-pulse"
       ></div>
       <div 
         style={{ width: '600px', height: '600px' }}
         className="fixed -bottom-[10%] -right-[10%] bg-cyan-500/20 rounded-full blur-[120px] pointer-events-none -z-10"
       ></div>
 
-      {/* --- CARD REGISTER (LIQUID GLASS) --- */}
+      {/* --- CARD REGISTER --- */}
       <div className={`bg-white/40 backdrop-blur-2xl border border-white/60 p-10 rounded-[2.5rem] shadow-2xl w-full max-w-md relative z-10 transition-all duration-500 ${isLoading ? 'opacity-80 scale-[0.98]' : ''}`}>
         
         <div className="text-center mb-8">
@@ -50,7 +47,7 @@ export default function RegisterPage() {
               type="text" 
               placeholder="Masukkan nama Anda" 
               required 
-              className="w-full px-5 py-4 rounded-2xl bg-white/50 border border-white/80 focus:outline-none focus:border-emerald-400 focus:ring-4 focus:ring-emerald-400/10 transition-all text-slate-800 shadow-inner"
+              className="w-full px-5 py-4 rounded-2xl bg-white/50 border border-white/80 focus:outline-none focus:border-[#7295f4] focus:ring-4 focus:ring-[#2648a6]/10 transition-all duration-500 text-slate-800 shadow-inner"
             />
           </div>
 
@@ -61,7 +58,7 @@ export default function RegisterPage() {
               type="email" 
               placeholder="email@contoh.com" 
               required 
-              className="w-full px-5 py-4 rounded-2xl bg-white/50 border border-white/80 focus:outline-none focus:border-emerald-400 focus:ring-4 focus:ring-emerald-400/10 transition-all text-slate-800 shadow-inner"
+              className="w-full px-5 py-4 rounded-2xl bg-white/50 border border-white/80 focus:outline-none focus:border-[#7295f4] focus:ring-4 focus:ring-[#2648a6]/10 transition-all duration-500 text-slate-800 shadow-inner"
             />
           </div>
 
@@ -72,14 +69,14 @@ export default function RegisterPage() {
               type="password" 
               placeholder="Minimal 8 karakter" 
               required 
-              className="w-full px-5 py-4 rounded-2xl bg-white/50 border border-white/80 focus:outline-none focus:border-emerald-400 focus:ring-4 focus:ring-emerald-400/10 transition-all text-slate-800 shadow-inner"
+              className="w-full px-5 py-4 rounded-2xl bg-white/50 border border-white/80 focus:outline-none focus:border-[#7295f4] focus:ring-4 focus:ring-[#2648a6]/10 transition-all duration-500 text-slate-800 shadow-inner"
             />
           </div>
           
           <button 
             type="submit" 
             disabled={isLoading}
-            className="w-full bg-linear-to-r from-emerald-600 to-cyan-600 hover:from-emerald-700 hover:to-cyan-700 text-white font-bold py-4 rounded-2xl mt-4 shadow-lg shadow-emerald-500/30 transition-all flex items-center justify-center gap-2"
+            className="w-full bg-linear-to-r from-[#7295f4] to-[#2648a6] hover:from-[#5e7aca] hover:to-[#244190] text-white font-bold py-4 rounded-2xl mt-4 shadow-lg shadow-[#2648a6]/30 transition-all duration-500 flex items-center justify-center gap-2"
           >
             {isLoading ? (
               <>
@@ -93,7 +90,7 @@ export default function RegisterPage() {
         </form>
 
         <p className="text-center mt-8 text-sm text-slate-500 font-medium">
-          Sudah punya akun? <span onClick={() => navigate('/login')} className="text-emerald-600 font-bold cursor-pointer hover:underline">Masuk</span>
+          Sudah punya akun? <span onClick={() => navigate('/login')} className="text-[#264db8] font-bold cursor-pointer hover:underline">Masuk</span>
         </p>
       </div>
     </div>
