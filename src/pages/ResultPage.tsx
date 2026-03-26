@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { ArrowLeft, Activity, ShieldCheck, Stethoscope, AlertTriangle, Loader2 } from 'lucide-react';
-import { supabase } from '../lib/supabase'; // Jembatan ke database
+import { supabase } from '../lib/supabase'; 
 
 export default function ResultPage() {
   const navigate = useNavigate();
   const location = useLocation();
   
-  // 1. Ambil ID Konsultasi yang dikirim dari kuis
   const { idKonsultasi } = location.state || {};
   const [hasil, setHasil] = useState<any>(null);
   const [error, setError] = useState(false);
@@ -20,7 +19,6 @@ export default function ResultPage() {
 
     const ambilDataAsli = async () => {
       try {
-        // 2. Tarik data dari Supabase berdasarkan ID
         const { data, error: sbError } = await supabase
           .from('konsultasi_kesehatan')
           .select('*')
@@ -29,12 +27,10 @@ export default function ResultPage() {
 
         if (sbError) throw sbError;
 
-        // 3. Masukkan ke state 'hasil' dengan format yang sama seperti dataPalsu Master
         setHasil({
           disease: data.hasil_diagnosa || "Analisis Tidak Diketahui",
           accuracy: data.tingkat_akurasi || 0,
           explanation: `Berdasarkan analisis AI terhadap keluhan "${data.deskripsi_gejala}", sistem mendeteksi pola yang mengarah pada ${data.hasil_diagnosa}.`,
-          // Kita pecah string "saran|medis" jadi array biar bisa di-map oleh UI Master
           advice: data.saran_medis ? data.saran_medis.split('|') : ["Istirahat cukup", "Pantau kondisi"]
         });
       } catch (err: any) {
@@ -43,7 +39,6 @@ export default function ResultPage() {
       }
     };
 
-    // Simulasi loading sebentar biar kerasa "AI Berpikir"
     const timer = setTimeout(() => {
       ambilDataAsli();
     }, 2000);
@@ -51,7 +46,6 @@ export default function ResultPage() {
     return () => clearTimeout(timer);
   }, [idKonsultasi]);
 
-  // Tampilan Error jika ID tidak ditemukan
   if (error) {
     return (
       <div className="min-h-screen bg-[#F8FAFC] flex flex-col items-center justify-center p-6 text-center">
@@ -74,11 +68,9 @@ export default function ResultPage() {
     );
   }
 
-  // Tampilan utama (100% Pakai Desain Master)
   return (
     <div className="min-h-screen bg-[#F8FAFC] overflow-hidden relative font-sans p-6 md:p-12 flex flex-col items-center">
       
-      {/* EFEK LATAR BELAKANG AWAN BIRU */}
       <div className="fixed top-[-10%] left-[-10%] w-150 h-150 bg-blue-400/30 rounded-full blur-[120px] pointer-events-none -z-10"></div>
       <div className="fixed bottom-[-10%] right-[-5%] w-150 h-150 bg-emerald-300/20 rounded-full blur-[120px] pointer-events-none -z-10"></div>
 

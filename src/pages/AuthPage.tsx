@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../lib/supabase";
+import { ShieldCheck } from "lucide-react"; 
 
 export default function AuthPage() {
   const navigate = useNavigate();
@@ -33,11 +34,9 @@ export default function AuthPage() {
     }
   };
 
-  // TAMBAHKAN INI DI BAWAH HANDLELOGIN
-
   return (
     <div className="h-screen w-full bg-slate-100 overflow-hidden relative font-sans flex items-stretch">
-      {/* --- SISI KIRI (Layout Master Aman) --- */}
+      
       <div className="relative flex-[1.2] bg-linear-to-br from-[#2e66a2] to-[#254292] overflow-hidden flex flex-col justify-between p-12">
         <div
           style={{ width: "600px", height: "600px", borderRadius: "50%" }}
@@ -48,25 +47,22 @@ export default function AuthPage() {
           className="absolute -bottom-40 -right-40 bg-sky-700/30 blur-3xl pointer-events-none z-0"
         ></div>
 
-        <div className="relative z-10 flex items-center gap-3">
-          <div className="w-10 h-10 bg-white/20 rounded-2xl flex items-center justify-center border border-white/20 backdrop-blur-md">
-            <svg
-              className="w-5 h-5 text-[#4ade80]"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-              />
-            </svg>
+        <div 
+          onClick={() => navigate("/")}
+          className="relative z-10 flex items-center gap-3 cursor-pointer group w-fit transition-all"
+          title="Kembali ke Beranda"
+        >
+          <div className="w-10 h-10 bg-white/20 rounded-2xl flex items-center justify-center border border-white/20 backdrop-blur-md group-hover:bg-white/30 group-hover:scale-110 transition-all duration-300">
+            <ShieldCheck className="w-6 h-6 text-[#4ade80]" />
           </div>
-          <span className="text-2xl font-black text-white tracking-tighter">
-            HealthLogia
-          </span>
+          <div className="flex flex-col">
+            <span className="text-2xl font-black text-white tracking-tighter group-hover:text-sky-200 transition-colors">
+              HealthLogia
+            </span>
+            <span className="text-[10px] text-white/0 group-hover:text-white/50 transition-all font-bold uppercase tracking-widest leading-none">
+              ← Kembali
+            </span>
+          </div>
         </div>
 
         <div className="relative z-10 space-y-8">
@@ -76,17 +72,11 @@ export default function AuthPage() {
             </h1>
             <p className="text-lg text-white/80 mt-4 leading-relaxed max-w-md">
               HealthLogia menggunakan AI untuk membantu deteksi dini kondisi
-              kesehatan Anda.
-            </p>
-
-            <h1 className="text-5xl font-black text-white leading-[1.1] tracking-tighter">
-              Kesehatan Anda, <br /> Prioritas Utama Kami.
-            </h1>
-            <p className="text-lg text-white/80 mt-4 leading-relaxed max-w-md">
-              HealthLogia menggunakan AI untuk membantu deteksi dini kondisi
+              kesehatan Anda secara akurat dan cepat.
               kesehatan Anda.
             </p>
           </div>
+          
           <div className="grid grid-cols-2 gap-8 max-w-md pt-6 border-t border-white/10">
             <div className="bg-white/10 p-6 rounded-3xl border border-white/10 hover:bg-white/15 transition-colors">
               <p className="text-5xl font-extrabold text-white">150K+</p>
@@ -94,23 +84,22 @@ export default function AuthPage() {
             </div>
             <div className="bg-white/10 p-6 rounded-3xl border border-white/10 hover:bg-white/15 transition-colors">
               <p className="text-5xl font-extrabold text-white">92%</p>
-              <p className="text-white/70 mt-1 font-medium">
-                Tingkat Akurasi AI
-              </p>
+              <p className="text-white/70 mt-1 font-medium">Tingkat Akurasi AI</p>
             </div>
           </div>
         </div>
+
         <p className="relative z-10 text-xs text-white/40 font-medium">
           © 2026 HealthLogia AI Platform. Professional Screening Tool.
         </p>
       </div>
 
-      {/* --- SISI KANAN (Form Login Master Aman) --- */}
       <div className="flex-1 bg-white/60 backdrop-blur-xl border-l border-white/20 flex flex-col items-center justify-center p-12 relative">
         <div
           style={{ width: "300px", height: "300px", borderRadius: "50%" }}
           className="absolute top-0 right-0 bg-blue-50/50 blur-3xl -z-10"
         ></div>
+
         <div
           className={`bg-white/50 backdrop-blur-2xl border border-white/80 p-10 rounded-[2.5rem] shadow-2xl w-full max-w-md relative z-10 transition-all duration-500 ${isLoading ? "opacity-80 scale-95" : "opacity-100"} hover:border-white transition-colors`}
         >
@@ -179,7 +168,6 @@ export default function AuthPage() {
             </button>
           </form>
 
-          {/* BALIK KE TOMBOL MASTER ASLI (PINDAH HALAMAN) */}
           <p className="text-center mt-8 text-sm text-slate-500 font-medium">
             Belum punya akun?{" "}
             <span

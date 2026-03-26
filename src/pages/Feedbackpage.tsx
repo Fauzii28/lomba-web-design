@@ -12,7 +12,6 @@ export default function FeedbackPage() {
         animate={{ opacity: 1, scale: 1 }}
         className="bg-white/80 backdrop-blur-xl p-8 rounded-[40px] shadow-2xl border border-white max-w-lg w-full"
       >
-        {/* Tombol Kembali */}
         <button 
           onClick={() => navigate('/')}
           className="flex items-center gap-2 text-slate-500 hover:text-[#1e3a8a] mb-6 transition-colors font-bold text-sm"

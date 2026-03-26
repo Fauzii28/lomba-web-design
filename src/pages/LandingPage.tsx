@@ -12,7 +12,6 @@ import {
 export default function LandingPage() {
   const navigate = useNavigate();
 
-  // 1. STATE UNTUK NAVBAR SCROLL
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -27,7 +26,6 @@ export default function LandingPage() {
     navigate('/login');
   };
 
-  // 2. FUNGSI SMOOTH SCROLL UNTUK NAVBAR
   const scrollToSection = (e: React.MouseEvent, sectionId: string) => {
     e.preventDefault();
     const section = document.getElementById(sectionId);
@@ -36,15 +34,13 @@ export default function LandingPage() {
     }
   };
 
-  // 3. FUNGSI UNTUK TOMBOL FEEDBACK (Membuka Halaman Baru)
   const handleFeedback = () => {
-    navigate('/feedback'); // Mengarahkan ke route /feedback
+    navigate('/feedback'); 
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#D9EAF5] via-[#E6F2F8] to-[#F8FAFC] text-slate-800 font-sans overflow-hidden relative">
       
-      {/* --- FLOATING STICKERS --- */}
       <motion.div 
         animate={{ y: [0, -10, 0] }} 
         transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
@@ -53,12 +49,10 @@ export default function LandingPage() {
         MEDICAL
       </motion.div>
 
-      {/* 1. NAVBAR */}
       <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 px-8 ${
         isScrolled ? 'bg-white/80 backdrop-blur-lg shadow-md py-2' : 'bg-transparent py-4'
       }`}>
         <div className="max-w-350 mx-auto px-8 flex justify-between items-center">
-        {/* Logo */}
         <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-2 font-black text-2xl text-[#1e3a8a] cursor-pointer">
           <div className="bg-[#1e3a8a] p-1 rounded-md shadow-inner">
             <svg className="w-5 h-5 text-[#4ade80]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -68,7 +62,6 @@ export default function LandingPage() {
           HealthLogia
         </motion.div>
         
-        {/* Links */}
         <div className="hidden lg:flex items-center gap-10 font-bold text-[15px] text-slate-500">
           <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-slate-800 transition-colors">Beranda</a>
           <a href="#carakerja" onClick={(e) => scrollToSection(e, 'carakerja')} className="hover:text-slate-800 transition-colors">Cara Kerja</a>
@@ -76,7 +69,6 @@ export default function LandingPage() {
           <a href="#kontak" onClick={(e) => scrollToSection(e, 'kontak')} className="hover:text-slate-800 transition-colors">Kontak</a>
         </div>
         
-        {/* CTA Button */}
         <motion.button 
           onClick={navigateKeLogin} 
           whileHover={{ scale: 1.05, boxShadow: "0px 5px 15px rgba(0,0,0,0.1)" }}
@@ -91,10 +83,8 @@ export default function LandingPage() {
         </div>
       </nav>
 
-      {/* 2. HERO SECTION */}
       <section className="relative pt-20 pb-45 px-10 max-w-350 mx-auto grid lg:grid-cols-12 gap-2 items-center min-h-175">
         
-        {/* KIRI: TEKS */}
         <div className="col-span-5 flex flex-col gap-6 relative z-20">
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} className="inline-flex items-center gap-2 bg-white/40 backdrop-blur-md px-4 py-2 rounded-full border border-white/60 w-fit shadow-sm">
             <Activity className="w-4 h-4 text-slate-700" />
@@ -130,19 +120,17 @@ export default function LandingPage() {
           </motion.div>
         </div>
 
-        {/* KANAN: GAMBAR DENGAN HOVER & ANIMASI MELAYANG */}
         <div className="col-span-7 relative h-full w-full">
-          {/* Gambar Medis Utama */}
           <motion.div 
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            whileHover={{ scale: 1.03, y: -10 }} // Animasi hover
+            whileHover={{ scale: 1.03, y: -10 }} 
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="absolute top-6 left-[15%] w-[320px] h-115 z-10 cursor-pointer"
           >
             <div className="w-full h-full bg-white/40 backdrop-blur-xl rounded-t-[200px] rounded-b-[40px] shadow-2xl border-4 border-white/60 overflow-hidden relative">
               <motion.img 
-                whileHover={{ scale: 1.15 }} // Gambar dalam sedikit zoom saat hover
+                whileHover={{ scale: 1.15 }} 
                 transition={{ duration: 0.5 }}
                 src="src/img/paru.jpg" 
                 className="w-full h-full object-cover mt-5 scale-110" 
@@ -151,14 +139,13 @@ export default function LandingPage() {
             </div>
           </motion.div>
 
-          {/* Gambar Paru-Paru 3D Melayang */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1, y: [0, -15, 0] }} // Efek melayang terus menerus
+            animate={{ opacity: 1, scale: 1, y: [0, -15, 0] }}
             transition={{ 
               opacity: { duration: 1, delay: 0.3 },
               scale: { duration: 1, delay: 0.3 },
-              y: { repeat: Infinity, duration: 4, ease: "easeInOut" } // Durasi melayang
+              y: { repeat: Infinity, duration: 4, ease: "easeInOut" } 
             }}
             className="absolute top-10 right-0 w-87.5 h-[400px] z-0 flex items-center justify-center pointer-events-none"
           >
@@ -167,10 +154,8 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* 3. CARA KERJA - CARD (Animasi Hover Smooth) */}
       <section id='carakerja' className="relative pt-30 z-30 px-12 max-w-350 mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 -mt-30">
         
-        {/* Card 1 */}
         <motion.div 
           initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
           whileHover={{ y: -12, scale: 1.02, boxShadow: "0px 20px 30px rgba(0,0,0,0.1)" }}
@@ -184,7 +169,6 @@ export default function LandingPage() {
           <p className="text-sm text-slate-500 mt-3 leading-relaxed">Scan kondisi fisik atau gejala luar menggunakan fitur Computer Vision kami.</p>
         </motion.div>
 
-        {/* Card 2 */}
         <motion.div 
           initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.2 }}
           whileHover={{ y: -12, scale: 1.02, boxShadow: "0px 20px 30px rgba(0,0,0,0.1)" }}
@@ -198,7 +182,6 @@ export default function LandingPage() {
           <p className="text-sm text-slate-500 mt-3 leading-relaxed">Tuliskan apa yang Anda rasakan untuk dianalisis oleh algoritma kesehatan kami.</p>
         </motion.div>
 
-        {/* Card 3 */}
         <motion.div 
           initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.4 }}
           whileHover={{ y: -12, scale: 1.02, boxShadow: "0px 20px 30px rgba(0,0,0,0.2)" }}
@@ -213,12 +196,10 @@ export default function LandingPage() {
         </motion.div>
       </section>
 
-      {/* 4. ABOUT SECTION */}
       <section id='tentang' className="py-20 px-8 pt-30 max-w-350 mx-auto grid md:grid-cols-2 gap-20 items-center">
-        {/* Kiri: Hospital Image & Overlay */}
         <motion.div 
           initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
-          whileHover={{ scale: 1.02 }} // Efek saat diarahkan ke gambar tentang kami
+          whileHover={{ scale: 1.02 }} 
           className="relative flex items-center px-4 cursor-pointer"
         >
           <div className="rounded-[40px] overflow-hidden shadow-2xl h-[400px] w-[85%] border-8 border-white bg-white">
@@ -242,7 +223,6 @@ export default function LandingPage() {
           </motion.div>
         </motion.div>
 
-        {/* Kanan: About Text */}
         <motion.div 
           initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
           className="flex flex-col gap-6 relative px-4"
@@ -264,11 +244,9 @@ export default function LandingPage() {
         </motion.div>
       </section>
 
-      {/* 5. FOOTER & CONTACT SECTION */}
       <footer id='kontak' className="bg-[#1e3a8a] text-white pt-15 pb-10 px-10 rounded-t-[50px]">
         <div className="max-w-350 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 border-b border-white/10 pb-16">
           
-          {/* Brand Kolom */}
           <div className="flex flex-col gap-6">
             <div className="flex items-center gap-2 font-black text-2xl">
               <div className="bg-[#1e3a8a] p-1 rounded-md">
@@ -299,7 +277,6 @@ export default function LandingPage() {
             </div>
           </div>
 
-          {/* Contact Details */}
           <div className="flex flex-col gap-6">
             <h4 className="font-black text-lg uppercase tracking-wider">Kontak Kami</h4>
             <div className="flex flex-col gap-4 text-blue-100/70 text-sm">
@@ -314,13 +291,11 @@ export default function LandingPage() {
             </div>
           </div>
 
-          {/* Feedback */}
           <div className="flex flex-col gap-6">
             <h4 className="font-black text-lg uppercase tracking-wider">Dukung Inovasi</h4>
             <p className="text-blue-100/60 text-sm leading-relaxed font-medium">
               Bantu kami menyempurnakan AI ini dengan memberikan masukan atau bergabung sebagai mitra medis.
             </p>
-            {/* FUNGSI FEEDBACK MENGARAH KE HALAMAN BARU */}
             <motion.button 
               onClick={handleFeedback} 
               whileHover={{ scale: 1.05 }}

@@ -18,7 +18,6 @@ export default function ProfilePage() {
   const navigate = useNavigate();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // --- SISTEM: State Dinamis ---
   const [profilePic, setProfilePic] = useState<string | null>(
     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=300&auto=format&fit=crop"
   );
@@ -28,7 +27,6 @@ export default function ProfilePage() {
   const [userJob, setUserJob] = useState("..."); // SISTEM: State Pekerjaan
   const [userLocation, setUserLocation] = useState("..."); // SISTEM: State Lokasi
 
-  // --- SISTEM: Ambil data dari Supabase ---
   useEffect(() => {
     const getProfile = async () => {
       const { data: { user } } = await supabase.auth.getUser();
@@ -36,7 +34,6 @@ export default function ProfilePage() {
       if (user) {
         setUserName(user.user_metadata?.full_name || user.email?.split('@')[0]);
         setUserEmail(user.email || "");
-        // Ambil data metadata yang baru kita buat di UpdateProfile
         setUserJob(user.user_metadata?.job || "Mahasiswa Informatika");
         setUserLocation(user.user_metadata?.location || "Majalengka, Jawa Barat");
       } else {
@@ -53,7 +50,6 @@ export default function ProfilePage() {
     navigate('/login');
   };
 
-  // Data Statistik (Masih Dummy untuk UI)
   const userDataStats = [
     { label: "Total Skrining", value: "12", icon: Activity, color: "text-blue-500" },
     { label: "Kondisi Sehat", value: "85%", icon: ShieldCheck, color: "text-emerald-500" },
@@ -74,7 +70,6 @@ export default function ProfilePage() {
   return (
     <div className="min-h-screen bg-slate-100 overflow-x-hidden relative font-sans">
       
-      {/* Efek Background (TIDAK DISENTUH) */}
       <div className="fixed top-[-10%] right-[-10%] w-150 h-150 bg-blue-200/30 blur-[120px] rounded-full z-0"></div>
       <div className="fixed bottom-[-10%] left-[-10%] w-150 h-150 bg-emerald-200/20 blur-[120px] rounded-full z-0"></div>
 
@@ -110,7 +105,6 @@ export default function ProfilePage() {
 
               <div className="text-center md:text-left">
                 <h1 className="text-3xl font-black text-slate-900 mb-1">{userName}</h1>
-                {/* SISTEM: Gunakan userJob */}
                 <p className="text-[#1e3a8a] font-bold uppercase tracking-widest text-xs mb-4">{userJob}</p>
                 
                 <div className="flex flex-wrap justify-center md:justify-start gap-4 text-slate-500 text-sm font-medium">
@@ -120,14 +114,12 @@ export default function ProfilePage() {
                   </div>
                   <div className="flex items-center gap-2">
                     <MapPin size={16} className="text-slate-400" />
-                    {/* SISTEM: Gunakan userLocation */}
                     {userLocation}
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* STATISTIK RINGKAS */}
             <div className="grid grid-cols-2 gap-4 mb-12">
               {userDataStats.map((stat, i) => (
                 <div key={i} className="bg-white/40 border border-white p-6 rounded-3xl shadow-md flex items-center gap-4 hover:scale-105 transition-all">
@@ -140,11 +132,10 @@ export default function ProfilePage() {
               ))}
             </div>
 
-            {/* MENU PENGATURAN */}
             <div className="space-y-3">
               <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-4 mb-4">Pengaturan Akun</h3>
               
-              <button onClick={() => navigate('/update-profile')} className="w-full flex items-center justify-between p-5 bg-white/40 hover:bg-white rounded-2xl transition-all border border-transparent hover:border-white shadow-sm group">
+              <button onClick={() => navigate('/update-profile')} className="w-full flex items-center justify-between p-5 bg-white/40 hover:bg-white rounded-2xl transition-all border border-transparent hover:border-white hover:scale-105 duration-300 shadow-sm group">
                 <div className="flex items-center gap-4">
                   <div className="p-2 bg-blue-50 rounded-lg text-blue-600"><Calendar size={18} /></div>
                   <span className="font-bold text-slate-700 text-sm">Update Data Diri</span>
@@ -152,7 +143,7 @@ export default function ProfilePage() {
                 <Edit3 size={16} className="text-slate-300 group-hover:text-[#1e3a8a]" />
               </button>
 
-              <button onClick={() => navigate('/security')} className="w-full flex items-center justify-between p-5 bg-white/40 hover:bg-white rounded-2xl transition-all border border-transparent hover:border-white shadow-sm group">
+              <button onClick={() => navigate('/security')} className="w-full flex items-center justify-between p-5 bg-white/40 hover:bg-white rounded-2xl transition-all border border-transparent hover:border-white hover:scale-105 duration-300 shadow-sm group">
                 <div className="flex items-center gap-4">
                   <div className="p-2 bg-emerald-50 rounded-lg text-emerald-600"><ShieldCheck size={18} /></div>
                   <span className="font-bold text-slate-700 text-sm">Keamanan & Password</span>

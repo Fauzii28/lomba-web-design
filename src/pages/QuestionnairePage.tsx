@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Check, ArrowRight, Loader2 } from 'lucide-react';
-import { supabase } from '../lib/supabase'; // Pastikan path ke supabase.ts benar
+import { supabase } from '../lib/supabase'; 
 
 interface Question {
   id: number;
@@ -49,7 +49,6 @@ export default function QuestionnairePage() {
   const [analyzing, setAnalyzing] = useState(false);
   const [isStoring, setIsStoring] = useState(false);
   
-  // FIX: Tambahkan state answers agar tidak error
   const [answers, setAnswers] = useState<Record<number, string>>({});
 
   const currentQuestion = questions[currentStep];
@@ -64,7 +63,6 @@ export default function QuestionnairePage() {
 
     setIsStoring(true);
     try {
-      // FIX: Simpan ke variabel lokal dulu karena state React telat update
       const updatedAnswers = { ...answers, [currentStep]: selectedAnswer };
       setAnswers(updatedAnswers);
 
@@ -84,7 +82,6 @@ export default function QuestionnairePage() {
         setCurrentStep(currentStep + 1);
         setSelectedAnswer('');
       } else {
-        // FIX: Kirim data jawaban terbaru langsung ke fungsi analisis
         startAnalysis(updatedAnswers);
       }
     } catch (err: any) {
@@ -95,45 +92,61 @@ export default function QuestionnairePage() {
     }
   };
 
-  // FIX: Terima parameter freshAnswers agar logika pakar berjalan akurat
+  
   const startAnalysis = async (freshAnswers: Record<number, string>) => {
     setAnalyzing(true);
 
     setTimeout(async () => {
-      // FIX: Gunakan freshAnswers, bukan answers dari state
       const semuaJawaban = Object.values(freshAnswers).join(' ');
-
-      let disease = "Observasi Gejala Ringan";
-      let accuracy = 75;
-      let advice = "Pantau suhu tubuh tiap 4 jam|Minum air hangat|Istirahat total";
-
-      if (semuaJawaban.includes('di atas 38°C') && semuaJawaban.includes('4-7 hari')) {
-        disease = "Indikasi Infeksi Virus (Flu/Tipus)";
-        accuracy = 88;
-        advice = "Segera cek darah ke laboratorium|Konsumsi paracetamol jika panas|Isolasi mandiri sementara";
-      } else if (semuaJawaban.includes('Ya, semakin parah')) {
-        disease = "Gangguan Kesehatan Akut";
-        accuracy = 82;
-        advice = "Segera konsultasi ke fasilitas kesehatan|Hindari makanan pedas & asam|Cukupi asupan cairan";
-      } else if (semuaJawaban.includes('Kurang dari 24 jam')) {
-        disease = "Kelelahan Fisik (Fatigue)";
-        accuracy = 95;
-        advice = "Tidur minimal 8 jam|Kurangi aktivitas berat|Minum vitamin booster";
-      }
+      
+      const { tipeKuis } = location.state || {}; 
 
       try {
-        const { error } = await supabase
-          .from('konsultasi_kesehatan')
-          .update({
-            hasil_diagnosa: disease,
-            tingkat_akurasi: accuracy,
-            saran_medis: advice,
-          })
-          .eq('id', idKonsultasi);
+        if (tipeKuis === 'luar') {
+          
+          const advice = "Jaga kebersihan area kulit|Gunakan salep/krim yang sesuai|Konsultasi ke Dokter Kulit jika memburuk";
+          
+          const { error } = await supabase
+            .from('konsultasi_kesehatan')
+            .update({ saran_medis: advice }) 
+            .eq('id', idKonsultasi);
+            
+          if (error) throw error;
 
-        if (error) throw error;
+        } else {
+         
+          let disease = "Observasi Gejala Ringan";
+          let accuracy = 75;
+          let advice = "Pantau suhu tubuh tiap 4 jam|Minum air hangat|Istirahat total";
+
+          if (semuaJawaban.includes('di atas 38°C') && semuaJawaban.includes('4-7 hari')) {
+            disease = "Indikasi Infeksi Virus (Flu/Tipus)";
+            accuracy = 88;
+            advice = "Segera cek darah ke laboratorium|Konsumsi paracetamol jika panas|Isolasi mandiri sementara";
+          } else if (semuaJawaban.includes('Ya, semakin parah')) {
+            disease = "Gangguan Kesehatan Akut";
+            accuracy = 82;
+            advice = "Segera konsultasi ke fasilitas kesehatan|Hindari makanan pedas & asam|Cukupi asupan cairan";
+          } else if (semuaJawaban.includes('Kurang dari 24 jam')) {
+            disease = "Kelelahan Fisik (Fatigue)";
+            accuracy = 95;
+            advice = "Tidur minimal 8 jam|Kurangi aktivitas berat|Minum vitamin booster";
+          }
+
+          const { error } = await supabase
+            .from('konsultasi_kesehatan')
+            .update({
+              hasil_diagnosa: disease,
+              tingkat_akurasi: accuracy,
+              saran_medis: advice,
+            })
+            .eq('id', idKonsultasi);
+            
+          if (error) throw error;
+        }
 
         navigate('/result', { state: { idKonsultasi } });
+        
       } catch (err: any) {
         console.error("Gagal update hasil:", err.message);
         setAnalyzing(false);
@@ -141,7 +154,6 @@ export default function QuestionnairePage() {
     }, 3000);
   };
 
-  // --- RENDERING TETAP SAMA (DESIGN TIDAK DIUBAH) ---
   if (analyzing) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center p-8">
@@ -158,10 +170,10 @@ export default function QuestionnairePage() {
             <Loader2 className="w-16 h-16 text-emerald-600" />
           </motion.div>
           <h2 className="text-3xl font-black text-slate-900 mb-4 tracking-tight">
-            AI sedang menganalisis data Anda...
+            AI sedang menganalisis data Kamu...
           </h2>
           <p className="text-slate-600 text-lg mb-8 font-medium">
-            Membandingkan jawaban Anda dengan basis pengetahuan medis kami.
+            Membandingkan jawaban Kamu dengan basis pengetahuan medis kami.
           </p>
           <div className="w-full bg-slate-200 rounded-full h-3 mb-4">
             <motion.div
@@ -171,7 +183,7 @@ export default function QuestionnairePage() {
               className="bg-linear-to-r from-emerald-500 to-blue-500 h-3 rounded-full"
             />
           </div>
-          <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">Processing Knowledge Base...</p>
+          <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">Sedang diproses...</p>
         </motion.div>
       </div>
     );

@@ -8,7 +8,6 @@ export default function DeskripsiGejalaPage() {
   const [deskripsi, setDeskripsi] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  // --- FUNGSI BARU: SIMPAN KE SUPABASE LALU PINDAH HALAMAN ---
   const handleNext = async () => {
     if (!deskripsi.trim() || isLoading) return;
 
@@ -16,7 +15,6 @@ export default function DeskripsiGejalaPage() {
     try {
       console.log("Sedang mengirim data ke Supabase...");
 
-      // 1. Perintah Simpan ke Tabel Bahasa Indonesia Master
       const { data, error } = await supabase
         .from('konsultasi_kesehatan')
         .insert([
@@ -36,8 +34,7 @@ export default function DeskripsiGejalaPage() {
 
       console.log("Data Berhasil Masuk!", data);
 
-      // 2. Kalau berhasil, pindah ke kuis sambil bawa ID Konsultasi-nya
-      navigate('/questionnairepage', { 
+      navigate('/questionnaire', { 
         state: { 
           idKonsultasi: data.id, 
           deskripsiAwal: deskripsi,
@@ -56,7 +53,6 @@ export default function DeskripsiGejalaPage() {
   return (
     <div className="h-screen w-full bg-slate-100 overflow-hidden relative font-sans flex items-center justify-center p-6">
       
-      {/* --- EFEK LATAR BELAKANG --- */}
       <div 
         style={{ width: '600px', height: '600px', borderRadius: '50%', filter: 'blur(80px)' }}
         className="absolute -top-20 -left-20 bg-blue-500/20 pointer-events-none -z-10 animate-pulse"
@@ -68,7 +64,6 @@ export default function DeskripsiGejalaPage() {
 
       <div className="max-w-3xl w-full flex flex-col relative z-10">
         
-        {/* Tombol Back */}
         <button 
           onClick={() => navigate('/dashboard')}
           className="flex items-center gap-2 text-slate-500 hover:text-blue-600 font-bold mb-4 transition-colors group w-fit"
@@ -77,7 +72,6 @@ export default function DeskripsiGejalaPage() {
           <span className="text-sm">Kembali</span>
         </button>
 
-        {/* --- MAIN CARD (LIQUID GLASS) --- */}
         <div className="bg-white/40 backdrop-blur-2xl border border-white/60 rounded-3xl p-8 shadow-2xl flex flex-col">
           <div className="flex items-center gap-4 mb-6">
             <div className="bg-blue-600 p-3 rounded-2xl shadow-lg">
@@ -108,7 +102,6 @@ export default function DeskripsiGejalaPage() {
               </p>
             </div>
 
-            {/* TOMBOL LANJUT */}
             <button 
               onClick={handleNext}
               disabled={!deskripsi.trim() || isLoading}
@@ -134,7 +127,6 @@ export default function DeskripsiGejalaPage() {
           </div>
         </div>
 
-        {/* --- TIPS CARD (IPHONE LIQUID GLASS) --- */}
         <div 
           style={{
             background: 'rgba(219, 234, 254, 0.3)', 
@@ -144,7 +136,6 @@ export default function DeskripsiGejalaPage() {
           }}
           className="mt-4 rounded-3xl p-5 flex gap-5 items-center shadow-xl relative overflow-hidden group transition-all duration-300"
         >
-          {/* Efek Cairan Bergerak */}
           <div 
             style={{ background: 'linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.25), rgba(79, 70, 229, 0.15), transparent)' }}
             className="absolute inset-0 w-full h-full -translate-x-[150%] skew-x-12 animate-pulse pointer-events-none -z-10"
