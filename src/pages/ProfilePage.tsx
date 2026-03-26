@@ -144,7 +144,7 @@ export default function ProfilePage() {
             <div className="space-y-3">
               <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-4 mb-4">Pengaturan Akun</h3>
               
-              <button onClick={() => navigate('/update-profile')} className="w-full flex items-center justify-between p-5 bg-white/40 hover:bg-white rounded-2xl transition-all border border-transparent hover:border-white shadow-sm group">
+              <button onClick={() => navigate('/update-profile')} className="w-full flex items-center justify-between p-5 bg-white/40 hover:bg-white rounded-2xl transition-all border border-transparent hover:border-white hover:scale-105 duration-300 shadow-sm group">
                 <div className="flex items-center gap-4">
                   <div className="p-2 bg-blue-50 rounded-lg text-blue-600"><Calendar size={18} /></div>
                   <span className="font-bold text-slate-700 text-sm">Update Data Diri</span>
@@ -152,7 +152,7 @@ export default function ProfilePage() {
                 <Edit3 size={16} className="text-slate-300 group-hover:text-[#1e3a8a]" />
               </button>
 
-              <button onClick={() => navigate('/security')} className="w-full flex items-center justify-between p-5 bg-white/40 hover:bg-white rounded-2xl transition-all border border-transparent hover:border-white shadow-sm group">
+              <button onClick={() => navigate('/security')} className="w-full flex items-center justify-between p-5 bg-white/40 hover:bg-white rounded-2xl transition-all border border-transparent hover:border-white hover:scale-105 duration-300 shadow-sm group">
                 <div className="flex items-center gap-4">
                   <div className="p-2 bg-emerald-50 rounded-lg text-emerald-600"><ShieldCheck size={18} /></div>
                   <span className="font-bold text-slate-700 text-sm">Keamanan & Password</span>
