@@ -256,11 +256,11 @@ export default function LandingPage() {
             <div className="flex flex-col gap-4 text-blue-100/70 text-sm">
               <div className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-[#4ade80]" />
-                <span>support@healthlogia.unma.ac.id</span>
+                <p>support@healthlogia.unma.ac.id</p>
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-[#4ade80]" />
-                <span>+62 812-3456-7890</span>
+                <p>+62 812-3456-7890</p>
               </div>
             </div>
           </div>
@@ -268,7 +268,7 @@ export default function LandingPage() {
           {/* Feedback */}
           <div className="flex flex-col gap-6">
             <h4 className="font-black text-lg uppercase tracking-wider">Dukung Inovasi</h4>
-            <p className="text-blue-100/60 text-xs leading-relaxed font-medium">
+            <p className="text-blue-100/60 text-sm leading-relaxed font-medium">
               Bantu kami menyempurnakan AI ini dengan memberikan masukan atau bergabung sebagai mitra medis.
             </p>
             <button className="bg-[#4ade80] text-[#1e3a8a] py-3 rounded-full font-black text-xs uppercase tracking-widest hover:brightness-110 transition-all shadow-lg shadow-black/20">

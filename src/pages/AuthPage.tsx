@@ -47,7 +47,7 @@ export default function AuthPage() {
             <h1 className="text-5xl font-black text-white leading-[1.1] tracking-tighter">
               Kesehatan Anda, <br /> Prioritas Utama Kami.
             </h1>
-            <p className="text-lg text-white/80 mt-4 leading-relaxed max-w-md">
+            <p className="text-md text-white/80 mt-4 leading-relaxed max-w-md">
               HealthLogia menggunakan AI untuk membantu deteksi dini kondisi kesehatan Anda.
             </p>
           </div>
@@ -93,7 +93,7 @@ export default function AuthPage() {
           
           <div className="text-center mb-8">
             <h2 className="text-4xl font-black text-slate-950 mb-2 tracking-tighter">Selamat Datang</h2>
-            <p className="text-slate-600 font-semibold opacity-90 leading-relaxed">Silakan masuk ke akun Anda</p>
+            <p className="text-slate-600 opacity-90 leading-relaxed">Silakan masuk ke akun Anda</p>
           </div>
 
           <form onSubmit={handleLogin} className="flex flex-col gap-5">
