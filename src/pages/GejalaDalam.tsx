@@ -37,8 +37,8 @@ export default function DeskripsiGejalaPage() {
 
       console.log("Data Berhasil Masuk!", data);
 
-      // 2. Kalau berhasil, pindah ke kuis sambil bawa ID Konsultasi-nya
-      navigate('/questionnairepage', { 
+      // 2. Kalau berhasil, pindah ke kuis sambil bawa ID Konsultasi-nya (DIUBAH JALURNYA DISINI)
+      navigate('/questionnaire', { 
         state: { 
           idKonsultasi: data.id, 
           deskripsiAwal: deskripsi,

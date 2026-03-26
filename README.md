@@ -1,73 +1,28 @@
-# React + TypeScript + Vite
+# 🛡️ HealthLogia - AI Health Screening Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**HealthLogia** adalah platform skrining kesehatan berbasis AI yang dikembangkan untuk memberikan analisis awal terhadap berbagai keluhan kesehatan pengguna. Proyek ini dikembangkan oleh **Ngawangkong Team** dari **Universitas Majalengka (UNMA)**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 📋 Persyaratan Sistem (Prerequisites)
+Sebelum menjalankan aplikasi, pastikan perangkat Anda sudah terinstal:
+* **Node.js** (Versi 18 atau terbaru)
+* **Python** (Versi 3.9 atau terbaru)
+* **Pip** (Package Installer untuk Python)
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ⚙️ Panduan Menjalankan Proyek (Step-by-Step)
 
-## Expanding the ESLint configuration
+Ikuti langkah-langkah di bawah ini secara berurutan agar aplikasi berjalan dengan sempurna:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Langkah 1: Persiapan File
+1. **Ekstrak file ZIP** `HealthLogia_Final.zip` ke folder tujuan di komputer Anda.
+2. Buka folder hasil ekstrak tersebut menggunakan **Visual Studio Code**.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Langkah 2: Menjalankan Backend (Terminal 1)
+Aplikasi ini menggunakan Python sebagai otak AI-nya.
+1. Buka **Terminal Baru** di VS Code.
+2. Masuk ke folder backend dengan perintah:
+   ```bash
+   cd healthlogia-backend
