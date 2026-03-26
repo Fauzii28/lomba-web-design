@@ -78,14 +78,6 @@ export default function AuthPage() {
               HealthLogia menggunakan AI untuk membantu deteksi dini kondisi
               kesehatan Anda.
             </p>
-
-            <h1 className="text-5xl font-black text-white leading-[1.1] tracking-tighter">
-              Kesehatan Anda, <br /> Prioritas Utama Kami.
-            </h1>
-            <p className="text-lg text-white/80 mt-4 leading-relaxed max-w-md">
-              HealthLogia menggunakan AI untuk membantu deteksi dini kondisi
-              kesehatan Anda.
-            </p>
           </div>
           <div className="grid grid-cols-2 gap-8 max-w-md pt-6 border-t border-white/10">
             <div className="bg-white/10 p-6 rounded-3xl border border-white/10 hover:bg-white/15 transition-colors">

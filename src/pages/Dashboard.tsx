@@ -130,7 +130,7 @@ export default function Dashboard() {
               <Camera className="w-8 h-8 text-white" />
             </div>
             <h2 className="text-2xl font-bold text-slate-800 mb-3 relative z-10">Cek Gejala Luar</h2>
-            <p className="text-slate-600 mb-8 leading-relaxed h-16 relative z-10 font-medium text-sm">
+            <p className="text-slate-600 mb-6 leading-relaxed h-16 relative z-10 font-medium text-md">
               Upload foto area tubuh yang mengalami keluhan untuk analisis visual menggunakan AI.
             </p>
             <div className="flex gap-2 flex-wrap relative z-10">
@@ -157,7 +157,7 @@ export default function Dashboard() {
               <MessageSquare className="w-8 h-8 text-white" />
             </div>
             <h2 className="text-2xl font-bold text-slate-800 mb-3 relative z-10">Konsultasi Gejala Dalam</h2>
-            <p className="text-slate-600 mb-8 leading-relaxed h-16 relative z-10 font-medium text-sm">
+            <p className="text-slate-600 mb-6 leading-relaxed h-16 relative z-10 font-medium text-md">
               Ceritakan keluhan internal Anda dan AI akan membantu menganalisis kondisi kesehatan.
             </p>
             <div className="flex gap-2 flex-wrap relative z-10">
