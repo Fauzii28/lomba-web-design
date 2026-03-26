@@ -95,17 +95,9 @@ export default function ProfilePage() {
             
             <div className="flex flex-col md:flex-row items-center gap-8 mb-12">
               <div className="relative group flex items-center justify-center">
-                <input type="file" accept="image/*" ref={fileInputRef} onChange={handleFileChange} className="hidden" />
-                <div className="w-36 h-36 bg-[#1e3a8a] rounded-full flex items-center justify-center text-white overflow-hidden cursor-pointer group-hover:shadow-2xl transition-all duration-300" onClick={triggerFileInput}>
-                  {profilePic ? (
-                    <img src={profilePic} alt="Avatar" className="w-full h-full object-cover rounded-full" />
-                  ) : (
-                    <User size={64} strokeWidth={1.5} />
-                  )}
+                <div className="w-32 h-32 bg-[#1e3a8a] rounded-full flex items-center justify-center text-white hover:scale-105 duration-300 transition-all shadow-2xl">
+                  <User size={64} strokeWidth={1.5} />
                 </div>
-                <button onClick={triggerFileInput} className="absolute bottom-1 right-1 bg-white p-2.5 rounded-full shadow-lg border border-slate-100 text-[#1e3a8a] hover:scale-110 transition-all">
-                  <Camera size={16} />
-                </button>
               </div>
 
               <div className="text-center md:text-left">
