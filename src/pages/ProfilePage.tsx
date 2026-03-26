@@ -152,7 +152,7 @@ export default function ProfilePage() {
                 <Edit3 size={16} className="text-slate-300 group-hover:text-[#1e3a8a]" />
               </button>
 
-              <button onClick={handleLogout} className="w-full flex items-center gap-4 p-5 text-red-500 hover:bg-red-50 rounded-2xl transition-all font-bold text-sm mt-8">
+              <button onClick={handleLogout} className="w-full flex items-center gap-3 p-5 text-red-500 hover:bg-red-50 rounded-2xl transition-all font-bold text-sm mt-8">
                 <LogOut size={18} /> Keluar dari Akun
               </button>
             </div>
