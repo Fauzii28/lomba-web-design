@@ -1,10 +1,38 @@
-import { Camera, MessageSquare, AlertTriangle, User, History, LogOut, Plus } from 'lucide-react';
+import { useState, useEffect } from 'react'; // TAMBAHAN: Import Hooks
+import { Camera, MessageSquare, AlertTriangle, User, LogOut } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { supabase } from '../lib/supabase'; // TAMBAHAN: Import Supabase
 
 export default function Dashboard() {
   const navigate = useNavigate();
-  const userName = "Farisahmad"; 
+  
+  // --- SISTEM: State untuk Nama User ---
+  const [userName, setUserName] = useState('User'); 
 
+  useEffect(() => {
+    const getUserData = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      
+      if (user) {
+        // Mengambil full_name dari metadata yang kita set pas register
+        // Jika tidak ada, fallback ke nama email sebelum tanda @
+        const name = user.user_metadata?.full_name || user.email?.split('@')[0];
+        setUserName(name);
+      } else {
+        // Jika tidak ada session (belum login), tendang ke halaman login
+        navigate('/login');
+      }
+    };
+
+    getUserData();
+  }, [navigate]);
+
+  // --- SISTEM: Fungsi Logout ---
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    localStorage.clear(); // Bersihkan storage
+    navigate('/login');
+  };
   return (
     <div className="min-h-screen bg-slate-100 overflow-hidden relative font-sans p-6 md:p-12 flex items-center justify-center">
       
@@ -30,7 +58,7 @@ export default function Dashboard() {
               <span className="text-sm font-black text-slate-700 hidden sm:block">{userName}</span>
             </div>
             <button 
-              onClick={() => navigate('/')} 
+              onClick={handleLogout}
               className="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-full transition-all"
               title="Logout"
             >
