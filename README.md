@@ -1,5 +1,16 @@
-# 🛡️ HealthLogia - AI Health Screening Platform
+FORMAT README PROJECT
 
+Healthlogia
+
+## Institusi
+Universitas Majalengka
+
+## Anggota Tim
+- Ketua: Faris Ahmad Fauzi
+- Anggota 1: Yuda Tri Putra
+- Anggota 2: Siti Solihah
+
+## Deskripsi Karya
 **HealthLogia** adalah platform skrining kesehatan berbasis AI yang dirancang untuk memberikan analisis awal terhadap berbagai keluhan kesehatan pengguna. Proyek ini dikembangkan oleh **Ngawangkong Team** dari **Universitas Majalengka (UNMA)** untuk kompetisi **Innovillage 2025**.
 
 ---
@@ -59,5 +70,4 @@ Setelah aplikasi terbuka, silakan mencoba alur berikut:
 •	Blank Page: Pastikan file .env sudah berada di folder utama (sejajar dengan package.json).
 •	Port Terpakai: Jika port 5173 atau 5000 sudah digunakan aplikasi lain, aplikasi akan otomatis berpindah port. Mohon cek link yang muncul di terminal.
 © 2026 Ngawangkong Team • Universitas Majalengka (UNMA)
-
 
