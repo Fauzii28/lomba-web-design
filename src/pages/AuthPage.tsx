@@ -76,6 +76,7 @@ export default function AuthPage() {
             <p className="text-lg text-white/80 mt-4 leading-relaxed max-w-md">
               HealthLogia menggunakan AI untuk membantu deteksi dini kondisi
               kesehatan Anda secara akurat dan cepat.
+              kesehatan Anda.
             </p>
           </div>
           
