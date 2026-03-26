@@ -11,7 +11,6 @@ import ProfilePage from './pages/ProfilePage';
 import UpdateData from './pages/UpdateData';   // Pakai nama file baru kamu: UpdateData.tsx
 import SecurityPage from './pages/SecurityPage';
 
-
 // --- TAMBAHKAN IMPORT INI ---
 import FeedbackPage from './pages/Feedbackpage'; 
 
@@ -29,8 +28,8 @@ export default function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/deskripsi-gejala" element={<DeskripsiGejalaPage />} />
         
-        {/* Jalur Kuis */}
-        <Route path="/questionnairepage" element={<QuestionnairePage />} />
+        {/* Jalur Kuis (DIUBAH NAMA JALURNYA SAJA) */}
+        <Route path="/questionnaire" element={<QuestionnairePage />} />
         <Route path="/registerpage" element={<RegisterPage />} />
         
         {/* Jalur Upload & Hasil */}
