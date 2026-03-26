@@ -1,35 +1,56 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { supabase } from '../lib/supabase'; // Pastikan path ini benar
 
 export default function RegisterPage() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  
+  // --- SISTEM: Tambahkan State untuk menangkap input ---
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
- const handleRegister = (e: React.FormEvent) => {
+  const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
-    setTimeout(() => {
+    try {
+      // --- SISTEM: Mesin Pendaftaran Supabase ---
+      const { data, error } = await supabase.auth.signUp({
+        email: email,
+        password: password,
+        options: {
+          data: {
+            full_name: fullName, // Menyimpan nama ke metadata user
+          },
+        },
+      });
+
+      if (error) throw error;
+
+      // Cek apakah butuh verifikasi email atau bisa langsung
+      if (data.user && !data.session) {
+        alert("Pendaftaran Berhasil! Silakan cek email kamu untuk verifikasi.");
+      } else {
+        alert("Pendaftaran Berhasil! Akun kamu sudah siap digunakan.");
+      }
       
-      // Arahkan kembali ke Login
       navigate('/login'); 
       
+    } catch (err: any) {
+      alert("Gagal Daftar: " + err.message);
+    } finally {
       setIsLoading(false);
-      alert("Pendaftaran Berhasil! Silakan login dengan akun baru Anda.");
-    }, 2000);
+    }
   };
 
   return (
     <div className="min-h-screen bg-slate-100 overflow-hidden relative font-sans flex items-center justify-center p-6">
       
-      <div 
-        style={{ width: '700px', height: '700px' }}
-        className="fixed -top-[10%] -left-[10%] bg-sky-500/25 rounded-full blur-[120px] pointer-events-none -z-10 animate-pulse"
-      ></div>
-      <div 
-        style={{ width: '600px', height: '600px' }}
-        className="fixed -bottom-[10%] -right-[10%] bg-cyan-500/20 rounded-full blur-[120px] pointer-events-none -z-10"
-      ></div>
+      {/* Design Decor (TIDAK DIUBAH) */}
+      <div style={{ width: '700px', height: '700px' }} className="fixed -top-[10%] -left-[10%] bg-sky-500/25 rounded-full blur-[120px] pointer-events-none -z-10 animate-pulse"></div>
+      <div style={{ width: '600px', height: '600px' }} className="fixed -bottom-[10%] -right-[10%] bg-cyan-500/20 rounded-full blur-[120px] pointer-events-none -z-10"></div>
 
       {/* --- CARD REGISTER --- */}
       <div className={`bg-white/40 backdrop-blur-2xl border border-white/60 p-10 rounded-[2.5rem] shadow-2xl w-full max-w-md relative z-10 transition-all duration-500 ${isLoading ? 'opacity-80 scale-[0.98]' : ''}`}>
@@ -45,6 +66,8 @@ export default function RegisterPage() {
             <label className="block text-sm font-bold text-slate-700 mb-2 ml-1">Nama Lengkap</label>
             <input 
               type="text" 
+              value={fullName} // SISTEM: Binding data
+              onChange={(e) => setFullName(e.target.value)} // SISTEM: Update data
               placeholder="Masukkan nama Anda" 
               required 
               className="w-full px-5 py-4 rounded-2xl bg-white/50 border border-white/80 focus:outline-none focus:border-[#7295f4] focus:ring-4 focus:ring-[#2648a6]/10 transition-all duration-500 text-slate-800 shadow-inner"
@@ -56,6 +79,8 @@ export default function RegisterPage() {
             <label className="block text-sm font-bold text-slate-700 mb-2 ml-1">Email</label>
             <input 
               type="email" 
+              value={email} // SISTEM: Binding data
+              onChange={(e) => setEmail(e.target.value)} // SISTEM: Update data
               placeholder="email@contoh.com" 
               required 
               className="w-full px-5 py-4 rounded-2xl bg-white/50 border border-white/80 focus:outline-none focus:border-[#7295f4] focus:ring-4 focus:ring-[#2648a6]/10 transition-all duration-500 text-slate-800 shadow-inner"
@@ -67,6 +92,8 @@ export default function RegisterPage() {
             <label className="block text-sm font-bold text-slate-700 mb-2 ml-1">Password</label>
             <input 
               type="password" 
+              value={password} // SISTEM: Binding data
+              onChange={(e) => setPassword(e.target.value)} // SISTEM: Update data
               placeholder="Minimal 8 karakter" 
               required 
               className="w-full px-5 py-4 rounded-2xl bg-white/50 border border-white/80 focus:outline-none focus:border-[#7295f4] focus:ring-4 focus:ring-[#2648a6]/10 transition-all duration-500 text-slate-800 shadow-inner"
