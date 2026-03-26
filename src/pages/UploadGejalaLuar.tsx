@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Upload, ImageIcon, X, Loader2 } from 'lucide-react';
+import { ArrowLeft, Upload, X, Loader2 } from 'lucide-react';
 // IMPORT INI DITAMBAHKAN UNTUK MENYIMPAN DATA
 import { supabase } from '../lib/supabase';
 

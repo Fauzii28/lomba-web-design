@@ -11,7 +11,7 @@ import {
   ShieldCheck, 
   Activity,
   LogOut,
-  Camera 
+  // {Camera} 
 } from 'lucide-react';
 
 export default function ProfilePage() {
@@ -19,7 +19,7 @@ export default function ProfilePage() {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // --- SISTEM: State Dinamis ---
-  const [profilePic, setProfilePic] = useState<string | null>(
+  const [ setProfilePic] = useState<string | null>(
     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=300&auto=format&fit=crop"
   );
   
@@ -59,17 +59,17 @@ export default function ProfilePage() {
     { label: "Kondisi Sehat", value: "85%", icon: ShieldCheck, color: "text-emerald-500" },
   ];
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setProfilePic(imageUrl);
-    }
-  };
+  // const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const file = event.target.files?.[0];
+  //   if (file) {
+  //     const imageUrl = URL.createObjectURL(file);
+  //     setProfilePic(imageUrl);
+  //   }
+  // };
 
-  const triggerFileInput = () => {
-    fileInputRef.current?.click();
-  };
+  // const triggerFileInput = () => {
+  //   fileInputRef.current?.click();
+  // };
 
   return (
     <div className="min-h-screen bg-slate-100 overflow-x-hidden relative font-sans">
