@@ -7,6 +7,10 @@ import RegisterPage from './pages/RegisterPage';
 import Dashboard from './pages/Dashboard';
 import DeskripsiGejalaPage from './pages/GejalaDalam';
 import ResultPage from './pages/ResultPage';
+import ProfilePage from './pages/ProfilePage';
+import UpdateData from './pages/UpdateData';   // Pakai nama file baru kamu: UpdateData.tsx
+import SecurityPage from './pages/SecurityPage';
+
 
 // --- TAMBAHKAN IMPORT INI ---
 import FeedbackPage from './pages/Feedbackpage'; 
@@ -32,6 +36,10 @@ export default function App() {
         {/* Jalur Upload & Hasil */}
         <Route path="/upload-gejala" element={<UploadGejalaLuar />} />
         <Route path="/result" element={<ResultPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/update-profile" element={<UpdateData />} /> 
+        
+        <Route path="/security" element={<SecurityPage />} />
 
         {/* --- TAMBAHKAN JALUR INI --- */}
         <Route path="/feedback" element={<FeedbackPage />} />
