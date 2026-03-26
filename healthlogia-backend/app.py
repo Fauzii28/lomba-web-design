@@ -33,7 +33,26 @@ def predict():
             "Ruam Alergi Kontak", 
             "Jerawat (Acne Vulgaris)",
             "Psoriasis Vulgaris",
-            "Urtikaria (Biduran)"
+            "Urtikaria (Biduran)",
+            "Panu (Tinea Versicolor)",
+            "Kutu Air (Tinea Pedis)",
+            "Kudis (Scabies)",
+            "Cutaneous Larva Migrans (Cacing Tambang)",
+            "Herpes Zoster (Cacar Ular)",
+            "Cacar Air (Varicella)",
+            "Veruka Vulgaris (Kutil)",
+            "Moluskum Kontagiosum",
+            "Bisul (Furunkel)",
+            "Impetigo (Luka Kerak)",
+            "Selulitis",
+            "Kusta (Lepra - Deteksi Dini)",
+            "Milia",
+            "Rosacea",
+            "Vitiligo",
+            "Melasma (Flek Hitam)",
+            "Melanoma (Kanker Kulit)",
+            "Karsinoma Sel Basal",
+            "Karsinoma Sel Skuamosa"
         ]
         
         # 4. HASIL CERDAS
