@@ -73,8 +73,8 @@ export default function Dashboard() {
         style={{ 
           width: '800px', 
           height: '800px', 
-          background: 'rgba(59, 130, 246, 0.25)', // Dibuat lebih soft (0.25)
-          filter: 'blur(120px)', // Blur dinaikkan lagi agar seperti awan
+          background: 'rgba(59, 130, 246, 0.25)', 
+          filter: 'blur(120px)', 
           position: 'fixed',
           top: '5%',
           right: '-15%',
@@ -104,7 +104,7 @@ export default function Dashboard() {
         
         {/* HEADER */}
         <div className="mb-12">
-          <h1 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight mb-4">
+          <h1 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight mb-4">
             Halo {userName}, apa yang Anda keluhkan hari ini?
           </h1>
           <p className="text-lg text-slate-700 font-medium">

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, MessageSquare, Lightbulb } from 'lucide-react';
-// Pastikan file supabase.ts ada di folder src/lib ya, King!
 import { supabase } from '../lib/supabase';
 
 export default function DeskripsiGejalaPage() {
