@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Upload, ImageIcon, X, Loader2 } from 'lucide-react';
+import { ArrowLeft, Upload, X, Loader2 } from 'lucide-react';
 // IMPORT INI DITAMBAHKAN UNTUK MENYIMPAN DATA
 import { supabase } from '../lib/supabase';
 
@@ -39,7 +39,7 @@ export default function UploadGejalaLuar() {
 
     try {
       // 1. Tembak Backend Python
-      const response = await fetch('http://localhost:5000/predict', {
+      const response = await fetch('https://fauzi28-healthlogia-api.hf.space/predict', {
         method: 'POST',
         body: formData,
       });

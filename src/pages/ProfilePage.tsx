@@ -18,34 +18,69 @@ export default function ProfilePage() {
   const navigate = useNavigate();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // --- SISTEM: State Dinamis ---
-  const [profilePic, setProfilePic] = useState<string | null>(
-    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=300&auto=format&fit=crop"
-  );
-  
+  // --- LOGIKA: State Dinamis ---
+  const [profilePic, setProfilePic] = useState<string | null>(null);
   const [userName, setUserName] = useState("Loading...");
   const [userEmail, setUserEmail] = useState("...");
-  const [userJob, setUserJob] = useState("..."); // SISTEM: State Pekerjaan
-  const [userLocation, setUserLocation] = useState("..."); // SISTEM: State Lokasi
+  const [userJob, setUserJob] = useState("..."); 
+  const [userLocation, setUserLocation] = useState("...");
+  const [loading, setLoading] = useState(false);
 
-  // --- SISTEM: Ambil data dari Supabase ---
   useEffect(() => {
     const getProfile = async () => {
       const { data: { user } } = await supabase.auth.getUser();
-
       if (user) {
         setUserName(user.user_metadata?.full_name || user.email?.split('@')[0]);
         setUserEmail(user.email || "");
-        // Ambil data metadata yang baru kita buat di UpdateProfile
         setUserJob(user.user_metadata?.job || "Mahasiswa Informatika");
         setUserLocation(user.user_metadata?.location || "Majalengka, Jawa Barat");
+        // Ambil URL foto jika ada
+        setProfilePic(user.user_metadata?.avatar_url || null);
       } else {
         navigate('/login');
       }
     };
-
     getProfile();
   }, [navigate]);
+
+  // --- LOGIKA: Upload ke Supabase Storage ---
+  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    try {
+      setLoading(true);
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
+
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${user.id}-${Math.random()}.${fileExt}`;
+
+      // 1. Upload ke bucket 'avatars' (Pastikan bucket sudah dibuat di Supabase)
+      const { error: uploadError } = await supabase.storage
+        .from('avatars')
+        .upload(fileName, file);
+
+      if (uploadError) throw uploadError;
+
+      // 2. Ambil Public URL
+      const { data: { publicUrl } } = supabase.storage
+        .from('avatars')
+        .getPublicUrl(fileName);
+
+      // 3. Simpan URL ke Metadata User
+      await supabase.auth.updateUser({
+        data: { avatar_url: publicUrl }
+      });
+
+      setProfilePic(publicUrl);
+      alert("Foto profil berhasil diperbarui!");
+    } catch (error: any) {
+      alert("Error: " + error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -53,28 +88,15 @@ export default function ProfilePage() {
     navigate('/login');
   };
 
-  // Data Statistik (Masih Dummy untuk UI)
   const userDataStats = [
     { label: "Total Skrining", value: "12", icon: Activity, color: "text-blue-500" },
     { label: "Kondisi Sehat", value: "85%", icon: ShieldCheck, color: "text-emerald-500" },
   ];
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setProfilePic(imageUrl);
-    }
-  };
-
-  const triggerFileInput = () => {
-    fileInputRef.current?.click();
-  };
-
   return (
     <div className="min-h-screen bg-slate-100 overflow-x-hidden relative font-sans">
       
-      {/* Efek Background (TIDAK DISENTUH) */}
+      {/* Background (TIDAK BERUBAH) */}
       <div className="fixed top-[-10%] right-[-10%] w-150 h-150 bg-blue-200/30 blur-[120px] rounded-full z-0"></div>
       <div className="fixed bottom-[-10%] left-[-10%] w-150 h-150 bg-emerald-200/20 blur-[120px] rounded-full z-0"></div>
 
@@ -94,15 +116,33 @@ export default function ProfilePage() {
           <div className="bg-white/60 backdrop-blur-md border border-white/80 rounded-[3rem] p-8 md:p-12 shadow-xl relative overflow-hidden">
             
             <div className="flex flex-col md:flex-row items-center gap-8 mb-12">
-              <div className="relative group flex items-center justify-center">
-                <div className="w-32 h-32 bg-[#1e3a8a] rounded-full flex items-center justify-center text-white hover:scale-105 duration-300 transition-all shadow-2xl">
-                  <User size={64} strokeWidth={1.5} />
+              {/* --- AREA FOTO: Tetap pakai desain kamu --- */}
+              <div 
+                className="relative group cursor-pointer" 
+                onClick={() => fileInputRef.current?.click()}
+              >
+                <div className="w-32 h-32 bg-[#1e3a8a] rounded-full flex items-center justify-center text-white hover:scale-105 duration-300 transition-all shadow-2xl overflow-hidden border-4 border-white">
+                  {profilePic ? (
+                    <img src={profilePic} alt="Profile" className="w-full h-full object-cover" />
+                  ) : (
+                    <User size={64} strokeWidth={1.5} />
+                  )}
+                  {loading && <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-[8px] font-bold">UPLOADING...</div>}
                 </div>
+                <div className="absolute bottom-0 right-0 p-2 bg-white rounded-full shadow-lg text-[#1e3a8a]">
+                  <Camera size={18} />
+                </div>
+                <input 
+                  type="file" 
+                  ref={fileInputRef} 
+                  onChange={handleFileChange} 
+                  className="hidden" 
+                  accept="image/*" 
+                />
               </div>
 
               <div className="text-center md:text-left">
                 <h1 className="text-3xl font-black text-slate-900 mb-1">{userName}</h1>
-                {/* SISTEM: Gunakan userJob */}
                 <p className="text-[#1e3a8a] font-bold uppercase tracking-widest text-xs mb-4">{userJob}</p>
                 
                 <div className="flex flex-wrap justify-center md:justify-start gap-4 text-slate-500 text-sm font-medium">
@@ -112,14 +152,13 @@ export default function ProfilePage() {
                   </div>
                   <div className="flex items-center gap-2">
                     <MapPin size={16} className="text-slate-400" />
-                    {/* SISTEM: Gunakan userLocation */}
                     {userLocation}
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* STATISTIK RINGKAS */}
+            {/* STATISTIK RINGKAS (TIDAK BERUBAH) */}
             <div className="grid grid-cols-2 gap-4 mb-12">
               {userDataStats.map((stat, i) => (
                 <div key={i} className="bg-white/40 border border-white p-6 rounded-3xl shadow-md flex items-center gap-4 hover:scale-105 transition-all">
@@ -132,7 +171,7 @@ export default function ProfilePage() {
               ))}
             </div>
 
-            {/* MENU PENGATURAN */}
+            {/* MENU PENGATURAN (TIDAK BERUBAH) */}
             <div className="space-y-3">
               <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-4 mb-4">Pengaturan Akun</h3>
               

@@ -182,7 +182,7 @@ export default function LandingPage() {
               <motion.img 
                 whileHover={{ scale: 1.1 }}
                 transition={{ duration: 0.5 }}
-                src="src/img/paru.jpg" 
+                src="/paru.jpg" 
                 className="w-full h-full object-cover mt-2 sm:mt-5 scale-110" 
                 alt="Doctor" 
               />
@@ -199,7 +199,7 @@ export default function LandingPage() {
             }}
             className="hidden md:flex absolute lg:top-10 lg:right-0 w-[300px] lg:w-[350px] z-0 items-center justify-center pointer-events-none"
           >
-            <img src="src/img/doctor.jpg" className="w-full object-contain mix-blend-multiply opacity-80 rounded-full" alt="Lungs 3D" />
+            <img src="/doctor.jpg" className="w-full object-contain mix-blend-multiply opacity-80 rounded-full" alt="Lungs 3D" />
           </motion.div>
         </div>
       </section>
@@ -261,7 +261,7 @@ export default function LandingPage() {
           className="relative flex items-center justify-center lg:justify-start px-2 cursor-pointer order-2 lg:order-1"
         >
           <div className="rounded-[40px] overflow-hidden shadow-2xl h-[300px] md:h-[400px] w-full lg:w-[85%] border-8 border-white bg-white">
-            <motion.img whileHover={{ scale: 1.05 }} transition={{ duration: 0.6 }} src="src/img/logo.jpg" alt="Hospital" className="w-full h-full object-cover" />
+            <motion.img whileHover={{ scale: 1.05 }} transition={{ duration: 0.6 }} src="/logo.jpg" alt="Hospital" className="w-full h-full object-cover" />
           </div>
 
           <motion.div 
@@ -368,7 +368,7 @@ export default function LandingPage() {
 
         {/* Copyright */}
         <div className="max-w-7xl mx-auto pt-6 md:pt-8 flex flex-col text-center text-blue-100/40 text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em]">
-          <div>© 2026 TIM ANABUL INFORMATIKA UNMA. ALL RIGHTS RESERVED.</div>
+          <div>© 2026 NGAWANGKONG TEAM UNMA. ALL RIGHTS RESERVED.</div>
         </div>
       </footer>
 
