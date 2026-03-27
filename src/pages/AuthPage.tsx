@@ -65,7 +65,7 @@ export default function AuthPage() {
             <span className="text-xl md:text-2xl font-black text-white tracking-tighter group-hover:text-sky-200 transition-colors">
               HealthLogia
             </span>
-            <span className="text-[10px] hidden md:block text-white/0 transition-all font-bold uppercase tracking-widest leading-none">
+            <span className="text-[10px] hidden md:block text-white/0 group-hover:text-white/50 transition-all font-bold uppercase tracking-widest leading-none">
               ← Kembali
             </span>
           </div>
