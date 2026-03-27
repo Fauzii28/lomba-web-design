@@ -368,7 +368,7 @@ export default function LandingPage() {
 
         {/* Copyright */}
         <div className="max-w-7xl mx-auto pt-6 md:pt-8 flex flex-col text-center text-blue-100/40 text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em]">
-          <div>© 2026 TIM ANABUL INFORMATIKA UNMA. ALL RIGHTS RESERVED.</div>
+          <div>© 2026 NGAWANGKONG TEAM UNMA. ALL RIGHTS RESERVED.</div>
         </div>
       </footer>
 
