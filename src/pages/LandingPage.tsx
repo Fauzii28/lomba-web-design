@@ -199,7 +199,7 @@ export default function LandingPage() {
             }}
             className="hidden md:flex absolute lg:top-10 lg:right-0 w-[300px] lg:w-[350px] z-0 items-center justify-center pointer-events-none"
           >
-            <img src="src/img/doctor.jpg" className="w-full object-contain mix-blend-multiply opacity-80 rounded-full" alt="Lungs 3D" />
+            <img src="/doctor.jpg" className="w-full object-contain mix-blend-multiply opacity-80 rounded-full" alt="Lungs 3D" />
           </motion.div>
         </div>
       </section>
